@@ -1,0 +1,39 @@
+
+.sidebar-element {
+  height: fit-content;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  border-radius: var(--border-radius);
+  padding-left: 2%;
+  transition: background-color 0.05s ease;
+}
+
+.sidebar-element:hover {
+  background-color: var(--hover-color);
+}
+
+.sidebar-element:hover > .sidebar-element-icon {
+  transform: scale(1.05, 1.05);
+}
+
+.sidebar-element:hover > a {
+  font-size: 2.1em;
+}
+
+
+.sidebar-element-icon {
+  font-size: var(--sidebar-width);
+  margin-right: 5%;
+  transition: transform 0.05s ease;
+}
+
+.sidebar-element > a {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  transition: font-size 0.05s ease;
+}
