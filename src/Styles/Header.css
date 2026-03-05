@@ -1,0 +1,54 @@
+
+
+header {
+  width: calc(100% - var(--sidebar-width));
+  position: absolute;
+  left: var(--sidebar-width);
+  height: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 4em;
+  font-style: normal;
+  font-weight: 500;
+  font-variation-settings: 
+  "slnt" 0,
+  "wdth" 100,
+  "GRAD" 100, 
+  "ROND" 75;
+  height: 50%;
+  margin: 0;
+}
+
+.italic-r {
+  font-variation-settings: 
+  "slnt" -5,
+  "wdth" 100,
+  "GRAD" 500, 
+  "ROND" 75;
+}
+.italicr-r {
+  font-variation-settings: 
+  "slnt" -10,
+  "wdth" 100,
+  "GRAD" 500, 
+  "ROND" 75;
+}
+
+.filter-area {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  box-sizing: border-box;
+  height: 50%;
+  width: 100%;
+  overflow-x: scroll;
+  gap: 1%;
+  padding: 1%;
+}

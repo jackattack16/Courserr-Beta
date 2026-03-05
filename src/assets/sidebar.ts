@@ -1,7 +1,7 @@
 const sidebarElements: { text: string, icon: string } [] = [
   {
     text: "Home",
-    icon: "home"
+    icon: "flood"
   },
   {
     text: "Handbook",

@@ -2,10 +2,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Google Sans Flex", sans-serif;
+  /* background-image: url('./assets/_DSC4836.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background-color: rgb(255, 255, 255);
 }
 
 .grainy-bg-blur {
   background-color: var(--blur-bg-color);
-  backdrop-filter: blur(5vh);
+  backdrop-filter: blur(10vh);
+  filter: url(#grain);
+}
+
+.grainy-bg-blur-dark {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(20vh);
   filter: url(#grain);
 }

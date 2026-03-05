@@ -1,6 +1,11 @@
 :root {
-  --sidebar-width: 5vw;
-  --blur-bg-color: rgba(255, 255, 255, 0.5);
+  --sidebar-icon-size: 5vw;
+  --sidebar-width: calc(var(--sidebar-icon-size) + 1vw);
+  --blur-bg-color: rgba(54, 54, 54, 0.25);
   --hover-color: rgba(0, 0, 0, 0.25);
   --border-radius: 2vh;
+  --select-color: rgb(68, 144, 206);
+  --select-hover-color: rgb(46, 110, 161);
+  --header-height: 15vh;
+  --light-mode-accent-bg: rgb(212, 212, 212);
 }

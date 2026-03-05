@@ -26,7 +26,8 @@
 
 
 .sidebar-element-icon {
-  font-size: var(--sidebar-width);
+  font-size: var(--sidebar-icon-size);
+  font-weight: 100;
   margin-right: 5%;
   transition: transform 0.05s ease;
 }
@@ -34,6 +35,11 @@
 .sidebar-element > a {
   text-align: center;
   font-size: 2em;
-  font-weight: 600;
+  font-weight: 700; 
+  font-variation-settings: 
+  "slnt" 0,
+  "wdth" 51.1,
+  "GRAD" 500, 
+  "ROND" 50;
   transition: font-size 0.05s ease;
 }

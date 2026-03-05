@@ -1,0 +1,28 @@
+
+
+.filter-button {
+  height: 45%;
+  width: max-content;
+  box-sizing: border-box;
+  text-wrap: nowrap;
+  border: 2px solid black;
+  border-radius: calc(var(--border-radius) / 2);
+  background-color: white;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  padding: 1%;
+  transition: background-color 0.15s ease;
+}
+
+.filter-button:hover:not(.selected) {
+  background-color: rgb(238, 238, 238);
+}
+
+.selected {
+  background-color: var(--select-color);
+}
+
+.selected:hover {
+  background-color: var(--select-hover-color);
+}
