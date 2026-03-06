@@ -1,16 +1,15 @@
-
-
 header {
   width: calc(100% - var(--sidebar-width));
   position: absolute;
   left: var(--sidebar-width);
   height: var(--header-height);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-between;
   z-index: 2;
+  padding: 0.5% 2%;
 }
 
 h1 {
@@ -22,8 +21,8 @@ h1 {
   "wdth" 100,
   "GRAD" 100, 
   "ROND" 75;
-  height: 50%;
   margin: 0;
+  cursor: pointer;
 }
 
 .italic-r {
@@ -41,14 +40,25 @@ h1 {
   "ROND" 75;
 }
 
+.italic-r:hover, .italicr-r:hover {
+  transform: rotate(10deg);
+}
+
+header > h1 > div {
+  transform-origin: bottom;
+  display: inline-block;
+  transition: transform 1s var(--spring-easing);
+}
+
+header > h1 > div:hover {
+  transform: rotate(10deg);
+}
+
 .filter-area {
   display: flex;
   align-items: center;
   justify-content: right;
-  box-sizing: border-box;
-  height: 50%;
-  width: 100%;
-  overflow-x: scroll;
   gap: 1%;
-  padding: 1%;
+  box-sizing: border-box;
+  height: fit-content;
 }

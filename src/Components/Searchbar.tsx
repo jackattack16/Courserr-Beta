@@ -6,7 +6,7 @@ function Searchbar() {
   const [value, setValue] = useState('');
   return (
     <>
-    <div className='searchbar-holder'>
+    <div className='searchbar-holder grainy-bg-blur'>
       <Icon name='search'/>
       <input
         className="searchbar"

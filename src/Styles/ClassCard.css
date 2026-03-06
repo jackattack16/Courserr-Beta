@@ -9,6 +9,11 @@
   border: 3px solid currentColor;
   padding: 2%;
   box-sizing: border-box;
+  transition: box-shadow 0.25s var;
+}
+
+.class-card:hover {
+  box-shadow: 0 0 1vh currentColor;
 }
 
 .class-card-header {

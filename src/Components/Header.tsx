@@ -9,8 +9,7 @@ function Header() {
     <>
       <header className="grainy-bg-blur">
         <h1>
-          Course<span className="italic-r">r</span>
-          <span className="italicr-r">r</span>
+          <div>C</div><div>o</div><div>u</div><div>r</div><div>s</div><div>e</div><div className="italic-r">r</div><div className="italicr-r">r</div>
         </h1>
         <div className="filter-area">
           <Searchbar></Searchbar>

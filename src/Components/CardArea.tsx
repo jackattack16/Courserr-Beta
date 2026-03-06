@@ -2,6 +2,8 @@ import '../Styles/CardArea.css'
 import ClassCard from './ClassCard';
 import courseMap from '../assets/ClassInstantiation';
 import Class from '../assets/Class';
+import Searchbar from './Searchbar';
+import FilterDialouge from './Dialouge';
 
 function CardArea() {
   // Convert courseMap to array of Class instances

@@ -2,7 +2,7 @@
 .text-icon-button {
   width:  max-content;
   box-sizing: border-box;
-  padding: 0.25% 1%;
+  padding: 0.5% 2%;
   font-size: 1.25em;
   font-weight: 600;
   display: flex;
