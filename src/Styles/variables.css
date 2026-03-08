@@ -8,6 +8,8 @@
   --select-hover-color: rgb(46, 110, 161);
   --header-height: 6.5vh;
   --light-mode-accent-bg: rgb(212, 212, 212);
+  --light-lifted-bg: rgba(255, 255, 255, 0.15);
+  --light-lifted-bg-hover: rgba(255, 255, 255, 0.25);
   --spring-easing: linear(
     0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017,
     1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,

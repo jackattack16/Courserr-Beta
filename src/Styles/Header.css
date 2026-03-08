@@ -22,6 +22,9 @@ h1 {
   "GRAD" 100, 
   "ROND" 75;
   margin: 0;
+}
+
+header > h1 {
   cursor: pointer;
 }
 

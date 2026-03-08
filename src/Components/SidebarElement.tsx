@@ -1,5 +1,6 @@
 import Icon from "./Icon";
 import '../Styles/SidebarElement.css'
+import { Link } from "react-router-dom";
 
 
 type sidebarElementProps = {
@@ -7,14 +8,12 @@ type sidebarElementProps = {
   icon: string;
 }
 
-function SidebarElement({ text, icon }: sidebarElementProps) {
+function SidebarElement({ text, icon}: sidebarElementProps) {
   return (
-    <>
     <nav className="sidebar-element">
-      <Icon name={icon} className='sidebar-element-icon'></Icon>
-      <a>{text}</a>
+      <Icon name={icon} className='sidebar-element-icon' filled={true}></Icon>
+      <p>{text}</p>
     </nav>
-    </>
   )
 }   
 

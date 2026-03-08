@@ -19,3 +19,8 @@
   /* transition: width 0.2s cubic-bezier(.13,1.21,.37,1.14); */
   transition: width 0.5s var(--spring-easing);
 }
+
+.sidebar-link {
+  color: black;
+  text-decoration: none;
+}

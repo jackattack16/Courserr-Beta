@@ -9,7 +9,7 @@
   width: 100%;
   border-radius: var(--border-radius);
   padding-left: 2%;
-  transition: background-color 0.05s ease;
+  transition: background-color 0.1s ease;
 }
 
 .sidebar-element:hover {
@@ -20,10 +20,6 @@
   transform: scale(1.05, 1.05);
 }
 
-.sidebar-element:hover > a {
-  font-size: 2.1em;
-}
-
 
 .sidebar-element-icon {
   font-size: var(--sidebar-icon-size);
@@ -32,7 +28,7 @@
   transition: transform 0.05s ease;
 }
 
-.sidebar-element > a {
+.sidebar-element > p {
   text-align: center;
   font-size: 2em;
   font-weight: 700; 

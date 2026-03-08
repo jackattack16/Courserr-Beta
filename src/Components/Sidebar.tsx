@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../Styles/Sidebar.css'
 import sidebarElements from '../assets/sidebar'
 import SidebarElement from './SidebarElement'
@@ -26,8 +27,16 @@ function Sidebar() {
         </defs>
       </svg>
     <aside className='sidebar grainy-bg-blur'>
-      {sidebarElements.map( ({text, icon}, index) => (
-        <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
+      {sidebarElements.map( ({text, icon, link, linkElement}, index) => (
+        linkElement ? 
+          <Link to={link} className='sidebar-link' key={index}> 
+            <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
+          </Link>
+          :
+          <a href={link} target="_blank" rel="noreferrer" className='sidebar-link' key={index}> 
+            <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
+          </a>
+
       ))}
     </aside>
     </>

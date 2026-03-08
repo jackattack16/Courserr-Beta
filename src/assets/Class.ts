@@ -5,7 +5,7 @@ class Class {
     dualCredit: boolean;
     subject: string;
     usualGrade: string;
-    prerequisite: string | null;
+    prerequisite: string;
     duration: 'semester' | 'year' | string;
     honorsAP: 'honors' | 'AP' | 'none' | string;
     description: string;
@@ -28,7 +28,7 @@ class Class {
         dualCredit: boolean,
         subject: string,
         usualGrade: string,
-        prerequisite: string | null,
+        prerequisite: string,
         duration: 'semester' | 'year' | string,
         semesterOffered: 'Both' | 'Fall' | 'Spring' | string,
         honorsAP: 'honors' | 'AP' | 'none' | string,
