@@ -1,4 +1,4 @@
-import subjectToIcon from "./icons";
+
 class Class {
     static nextId: number = 1;
 

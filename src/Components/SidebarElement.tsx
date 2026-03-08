@@ -1,6 +1,5 @@
 import Icon from "./Icon";
 import '../Styles/SidebarElement.css'
-import { Link } from "react-router-dom";
 
 
 type sidebarElementProps = {
