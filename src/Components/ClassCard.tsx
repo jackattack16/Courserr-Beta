@@ -2,6 +2,7 @@ import Icon from "./Icon";
 import '../Styles/ClassCard.css'
 import '../Styles/classColours.css'
 import Class from '../assets/Class';
+import { Link } from "react-router-dom";
 
 interface Props {
   course: Class;
@@ -30,9 +31,9 @@ function getSubjectClass(subject?: string): string {
 }
 
 function ClassCard({ course }: Props) {
-  const title = course.getShortName() || 'Untitled Class';
-  const description = course.getDescription() || '';
-  const subjectClass = getSubjectClass(course.getSubject());
+  const title:string = course.getShortName() || 'Untitled Class';
+  const description:string = course.getDescription() || '';
+  const subjectClass:string = getSubjectClass(course.getSubject());
   const subjectToIcon: Record<string, string> = {
     "agriculture": "agriculture",
     "arts": "palette",
@@ -49,6 +50,7 @@ function ClassCard({ course }: Props) {
     "informationsolutions": "climate_mini_split",
     "exampleclass": "flutter_dash",
   };
+  const courseID:number = course.getCourseId();
   
   const iconName = subjectToIcon[subjectClass] || 'science_off';
   return (
@@ -56,7 +58,7 @@ function ClassCard({ course }: Props) {
       <div className={`class-card ${subjectClass}`}>
         <div className="class-card-header">
           <Icon name={iconName} className="class-card-icon" />
-          <h1><a>{title}</a></h1>
+          <h1><Link to={`/class/${courseID}`} className="card-link">{title}</Link></h1>
           <Icon name="bookmark" className="class-card-icon" />
         </div>
         <p className="class-card-description">{description}</p>

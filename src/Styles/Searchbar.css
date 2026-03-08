@@ -1,4 +1,4 @@
-
+  
 .searchbar-holder {
   display: flex;
   flex-direction: row;
@@ -13,11 +13,13 @@
 
 .searchbar {
   width: max-content;
+  min-width: 50%;
   height:  fit-content;
   font-size: 1.25em;
   border: none;
   background: none;
   padding: 0.25% 1%;
+  box-sizing: border-box;
 }
 
 .searchbar:focus {

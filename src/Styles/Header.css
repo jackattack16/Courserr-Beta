@@ -48,6 +48,7 @@ header > h1 > div {
   transform-origin: bottom;
   display: inline-block;
   transition: transform 1s var(--spring-easing);
+  letter-spacing: 10%;
 }
 
 header > h1 > div:hover {

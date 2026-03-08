@@ -23,8 +23,8 @@
   align-items: center;
 }
 
-.class-card-header > h1 {
-  font-size: 1.75em;
+.card-link {
+  font-size: 0.35em;
   text-decoration: underline;
   text-align: center;
   display: flex;
