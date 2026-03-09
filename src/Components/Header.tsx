@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../Styles/Header.css";
 import FilterDialouge from "./Dialouge";
 // import Icon from "./Icon";
