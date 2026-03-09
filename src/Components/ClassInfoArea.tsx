@@ -11,7 +11,6 @@ import {
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";
-import ClassCard from "./ClassCard";
 
 function ClassInfoArea() {
   const { id } = useParams();
