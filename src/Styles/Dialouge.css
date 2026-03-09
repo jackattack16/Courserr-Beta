@@ -1,9 +1,18 @@
-@import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/green.css";
-@import "@radix-ui/colors/mauve.css";
-@import "@radix-ui/colors/violet.css";
-
-
+:root {
+  --violet-3: #e9defa;
+  --violet-4: #c4a9f5;
+  --violet-6: #9061f9;
+  --violet-7: #7c3aed;
+  --violet-8: #6d28d9;
+  --violet-11: #5b21b6;
+  --violet-12: #4c1d95;
+  --mauve-3: #e4e4e7;
+  --green-4: #86efac;
+  --green-5: #4ade80;
+  --green-7: #22c55e;
+  --green-11: #166534;
+  --gray-3: #e5e7eb;
+}
 
 .DialogOverlay {
 	position: fixed;

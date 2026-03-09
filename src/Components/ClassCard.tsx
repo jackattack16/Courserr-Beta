@@ -16,12 +16,17 @@ function ClassCard({ course }: Props) {
   const courseID:number = course.getCourseId();
   
   const iconName = subjectToIcon[subjectClass] || 'science_off';
+
+  const preloadClassInfo = () => {
+    import('./ClassInfoArea')
+  };
+
   return (
     <>
       <div className={`class-card ${subjectClass}`}>
         <div className="class-card-header">
           <Icon name={iconName} className="class-card-icon" />
-          <h1><Link to={`/class/${courseID}`} className="card-link">{title}</Link></h1>
+          <h1><Link to={`/class/${courseID}`} className="card-link" onMouseEnter={preloadClassInfo}>{title}</Link></h1>
           <Icon name="bookmark" className="class-card-icon" />
         </div>
         <p className="class-card-description">{description}</p>

@@ -1,4 +1,4 @@
-import { Dialog } from "radix-ui";
+import * as Dialog from "@radix-ui/react-dialog";
 import '../Styles/TextIconButton.css'
 import '../Styles/Dialouge.css'
 import Icon from "./Icon";
