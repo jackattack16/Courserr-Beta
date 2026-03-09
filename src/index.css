@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Google Sans Flex", sans-serif;
+  font-family: 'Google Sans Flex', system-ui, sans-serif;
   /* background-image: url('./assets/_DSC4836.jpg');
   background-position: center;
   background-repeat: no-repeat;

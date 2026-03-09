@@ -9,7 +9,7 @@
   border: 3px solid currentColor;
   padding: 2%;
   box-sizing: border-box;
-  transition: box-shadow 0.25s var;
+  transition: box-shadow 0.25s ease;
 }
 
 .class-card:hover {

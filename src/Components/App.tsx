@@ -1,12 +1,18 @@
 // import reactLogo from '../assets/react.svg'
 // import viteLogo from '/vite.svg'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
 import '../App.css'
-import CardArea from './CardArea'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import ClassInfoArea from './ClassInfoArea';
+
+const CardArea = lazy(() => import('./CardArea'))
+const ClassInfoArea = lazy(() => import('./ClassInfoArea'))
+
+function Loading() {
+  return <div style={{ marginLeft: 'var(--sidebar-width)', padding: '20px' }}>Loading...</div>
+}
 
 function App() {
   return (
@@ -14,10 +20,12 @@ function App() {
       <div className='flex-container'>
         <Sidebar />
         <Header />
-        <Routes>
-          <Route path="/" element={<CardArea />} />
-          <Route path="/class/:id" element={<ClassInfoArea />} />
-        </Routes>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<CardArea />} />
+            <Route path="/class/:id" element={<ClassInfoArea />} />
+          </Routes>
+        </Suspense>
       </div>
     </BrowserRouter>
   )
