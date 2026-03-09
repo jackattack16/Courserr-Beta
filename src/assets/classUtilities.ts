@@ -57,7 +57,7 @@ export function titleCase(inputString: string) {
 
 // Old function
 // TODO: Rewrite this to make it better
-export function getPrereqCourseId(className: string) {
+export function getPrereqCourseId(className: string):number {
 
   // Find course by name to get its ID
   const allCourses = Array.from(courseMap.values());
@@ -68,6 +68,10 @@ export function getPrereqCourseId(className: string) {
   // 2. Try case-insensitive exact match
   if (!targetCourse) {
     targetCourse = allCourses.find(c => c.getClassName().toLowerCase() === className.toLowerCase());
+  }
+
+  if (!targetCourse) {
+    throw new Error('Course Not Found');
   }
 
 

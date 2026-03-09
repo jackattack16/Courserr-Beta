@@ -2653,7 +2653,7 @@ const physicalScience =new Class(
     false, // dualCredit
     "Science", // subject
     "11", // usualGrade
-    "Earth and Space Science; Biology", // prerequisite
+    "Earth and Space Science, Biology", // prerequisite
     "Full Year", // duration
     "Both", // Semester Offered
     "None", // honorsAP

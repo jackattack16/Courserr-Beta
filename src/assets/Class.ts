@@ -122,19 +122,37 @@ class Class {
         return averageLetter;
     }
     // Getters
-    getDualCredit() { return this.dualCredit; }
+    getDualCredit() { 
+      if (this.dualCredit) {
+        return "Yes";
+      } else {
+        return "No";
+      }
+    }
     getSubject() { return this.subject; }
     getUsualGrade() { return this.usualGrade; }
     getPrerequisite() { return this.prerequisite; }
     getDuration() { return this.duration; }
-    getHonorsAP() { return this.honorsAP; }
+    getHonorsAP() { 
+      if (this.honorsAP === "None") {
+        return "Normal";
+      } else {
+        return this.honorsAP; 
+      }
+    }
     getDescription() { return this.description; }
-    getAverageGrade() { return this.averageGrade; }
+    getAverageGrade() { 
+      if (this.averageGrade === null) {
+        return "TBD";
+      } else {
+        return this.averageGrade;
+       } 
+    }
     getRatings() { return this.ratings; }
     getComments() { return this.comments; }
     getGrades() { return this.grades; }
-    getAverageTimePerWeek(): number {
-        if (!Array.isArray(this.averageTimePerWeek) || this.averageTimePerWeek.length === 0) return 0;
+    getAverageTimePerWeek() {
+        if (this.averageTimePerWeek.length === 0) return "TBD";
         const sum = this.averageTimePerWeek.reduce((acc, val) => acc + val, 0);
         return Math.round(sum / this.averageTimePerWeek.length);
     }
