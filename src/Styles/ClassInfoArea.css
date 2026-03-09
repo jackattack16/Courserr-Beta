@@ -80,7 +80,7 @@
   background-color: var(--light-lifted-bg);
   width: 80%;
   border-radius: calc(var(--border-radius) / 2);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 ul.no-bullets {
@@ -88,5 +88,30 @@ ul.no-bullets {
   padding: 0;
   margin: 0;
   width: 80%;
-  
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  justify-content: flex-start;
+}
+
+.class-info-half-content {
+  background-color: yellow;
+  height: 50%;
+  flex: 1;
+  border-radius: var(--border-radius);
+  font-size: 1.5em;
+  text-align: center;
+  padding: 1%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.class-info-main {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2vmin; /* TODO: change this */
 }

@@ -1,13 +1,17 @@
 import '../Styles/List-Elements.css'
 
-function ListElement() {
+type listElementProps = {
+  type?: string;
+  text: string;
+}
+function ListElement({ type, text }: listElementProps) {
 
   return (
     // Todo: make this into a div with proper text format
     <li>
-      <button className='list-element'>
-      Homework: 10 hours a week
-    </button>
+      <button className={`list-element ${type}`}>
+        {text}
+      </button>
     </li>
   )
 }

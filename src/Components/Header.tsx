@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../Styles/Header.css";
 import FilterDialouge from "./Dialouge";
 // import Icon from "./Icon";
@@ -8,9 +9,11 @@ function Header() {
   return (
     <>
       <header className="grainy-bg-blur">
+        
         <h1>
           <div>C</div><div>o</div><div>u</div><div>r</div><div>s</div><div>e</div><div className="italic-r">r</div><div className="italicr-r">r</div>
         </h1>
+        
         <div className="filter-area">
           <Searchbar></Searchbar>
           <FilterDialouge></FilterDialouge>

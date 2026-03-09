@@ -33,3 +33,7 @@
 .list-element:hover {
   background-color: var(--light-lifted-bg-hover);
 }
+
+.warning {
+  border: 2px solid red;
+}
