@@ -78,3 +78,36 @@ export function getPrereqCourseId(className: string):number {
 
   return targetCourse.getCourseId();
 }
+
+export function calculateScore(course: Class, query: string): number {
+  let score = 0;
+  const className = course.getClassName().toLowerCase();
+  const shortName = course.getShortName().toLowerCase();
+  const tags = course.getTags().join(' ').toLowerCase();
+  const subject = course.getSubject().toLowerCase();
+  const description = course.getDescription().toLowerCase();
+
+  if (className === query) score += 10;
+  if (shortName === query) score += 8;
+
+  if (className.includes(query)) score += 5;
+  if (shortName.includes(query)) score += 4;
+  if (tags.includes(query)) score += 3;
+  if (subject.includes(query)) score += 2;
+  if (description.includes(query)) score += 1;
+
+  return score;
+}
+
+export function isCloseMatch(course: Class, query: string): boolean {
+  const className = course.getClassName().toLowerCase();
+  const shortName = course.getShortName().toLowerCase();
+  const q = query.toLowerCase();
+
+  return (
+    className === q ||
+    shortName === q ||
+    className.startsWith(q) ||
+    (q.length >= 3 && className.includes(q))
+  );
+}

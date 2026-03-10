@@ -1,9 +1,27 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import '../Styles/Searchbar.css'
 import Icon from './Icon';
 
-function Searchbar() {
+type searchbarProps = {
+  updateSearchQuery: (query: string) => void;
+  clearTrigger?: number;
+}
+
+function Searchbar({ updateSearchQuery, clearTrigger }: searchbarProps) {
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (clearTrigger !== undefined) {
+      setValue('');
+    }
+  }, [clearTrigger]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      updateSearchQuery(value);
+    }
+  }, [value, updateSearchQuery]);
+
   return (
     <>
     <div className='searchbar-holder grainy-bg-blur'>
@@ -13,6 +31,7 @@ function Searchbar() {
         placeholder='Type something...'
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       {value && <kbd>Enter</kbd>}
     </div>

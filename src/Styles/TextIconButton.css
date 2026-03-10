@@ -11,6 +11,6 @@
   gap: 10%;
   background-color: white;
   border-radius: calc(var(--border-radius) / 2);
-  border: 2px solid black;
+  border: 3px solid black;
   height: max-content;
 }
