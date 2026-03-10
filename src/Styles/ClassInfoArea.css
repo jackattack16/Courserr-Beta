@@ -1,7 +1,8 @@
 
 .class-info-header {
   width: 100%;
-  height: 50%;
+  min-height: 50%;
+  max-height: fit-content;
   background-color: cornflowerblue;
   border-radius: var(--border-radius);
   display: flex;
@@ -15,15 +16,18 @@
 
 .class-info-half {
   width: 50%;
-  height: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
 .no-color-link {
   color: currentColor;
+}
+
+.class-info-half:has(.class-info-title) {
+  align-items: center;
 }
 
 .class-info-title {
@@ -39,6 +43,7 @@
   padding: 1% 0.5%;
   width: min-content;
   min-width: 70%;
+  height: 50%;
 }
 
 .class-info-title > h1 {
@@ -57,7 +62,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5%;
+  gap: 1rem;
   width: max-content;
 }
 
@@ -68,7 +73,6 @@
 }
 
 .class-info-fourth {
-  height: 100%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -88,11 +92,10 @@ ul.no-bullets {
   padding: 0;
   margin: 0;
   width: 80%;
-  height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 5%;
+  gap: 1rem;
   justify-content: flex-start;
 }
 
@@ -113,5 +116,5 @@ ul.no-bullets {
 .class-info-main {
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2vmin; /* TODO: change this */
+  gap: 1rem; /* TODO: change this */
 }
