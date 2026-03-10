@@ -3,7 +3,11 @@ import '../Styles/Sidebar.css'
 import sidebarElements from '../assets/sidebar'
 import SidebarElement from './SidebarElement'
 
-function Sidebar() {
+type SidebarProps = {
+  onHomeClick?: () => void;
+}
+
+function Sidebar({ onHomeClick }: SidebarProps) {
   
   return (
     <>
@@ -29,7 +33,12 @@ function Sidebar() {
     <aside className='sidebar grainy-bg-blur'>
       {sidebarElements.map( ({text, icon, link, linkElement}, index) => (
         linkElement ? 
-          <Link to={link} className='sidebar-link' key={index}> 
+          <Link 
+            to={link} 
+            className='sidebar-link' 
+            key={index}
+            onClick={index === 0 ? onHomeClick : undefined}
+          > 
             <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
           </Link>
           :

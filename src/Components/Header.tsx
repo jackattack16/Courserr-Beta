@@ -4,7 +4,11 @@ import FilterDialouge from "./Dialouge";
 import Searchbar from "./Searchbar";
 // import TextIconButton from "./TextIconButton";
 
-function Header() {
+type headerProps = {
+  updateSearchQuery: (query: string) => void;
+  clearTrigger?: number;
+}
+function Header( {updateSearchQuery, clearTrigger}: headerProps) {
   return (
     <>
       <header className="grainy-bg-blur">
@@ -14,7 +18,7 @@ function Header() {
         </h1>
         
         <div className="filter-area">
-          <Searchbar></Searchbar>
+          <Searchbar updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger}></Searchbar>
           <FilterDialouge></FilterDialouge>
         </div>
       </header>

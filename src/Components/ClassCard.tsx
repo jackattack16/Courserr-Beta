@@ -4,12 +4,13 @@ import '../Styles/classColours.css'
 import Class from '../assets/Class';
 import { Link } from "react-router-dom";
 import { getSubjectClass, subjectToIcon } from "../assets/classUtilities";
+import { memo } from 'react';
 
 interface Props {
   course: Class;
 }
 
-function ClassCard({ course }: Props) {
+const ClassCard = memo(function ClassCard({ course }: Props) {
   const title:string = course.getShortName() || 'Untitled Class';
   const description:string = course.getDescription() || '';
   const subjectClass:string = getSubjectClass(course.getSubject());
@@ -33,6 +34,6 @@ function ClassCard({ course }: Props) {
       </div>
     </>
   );
-}
+});
 
 export default ClassCard;
