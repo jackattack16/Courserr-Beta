@@ -81,7 +81,7 @@ function ClassInfoArea() {
           <div className="class-info-fourth">
             <h2>Quick Look</h2>
             <ul className="no-bullets">
-              {quickLookItems.map((item, index) => ( <ListElement key={index}text={`${item.label}: ${item.value}`}/> ))}
+              {quickLookItems.map((item, index) => ( <ListElement key={index} text={`${item.label}: ${item.value}`}/> ))}
             </ul>
           </div>
         </div>
