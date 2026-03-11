@@ -5,11 +5,14 @@ import Icon from "./Icon";
 import FilterChip from "./FilterChip";
 import filters from "../assets/filters";
 
-function FilterDialouge() {
+interface filterDialougeProps {
+  isMobile: boolean;
+}
+function FilterDialouge({ isMobile }: filterDialougeProps) {
   return (
     <Dialog.Root>
 		<Dialog.Trigger asChild>
-      <button className='text-icon-button'>Filters<Icon name='tune'></Icon></button>
+      <button className='text-icon-button'>{isMobile ? "" : "Filters"}<Icon name='tune'></Icon></button>
 		</Dialog.Trigger>
 		<Dialog.Portal>
 			<Dialog.Overlay className="DialogOverlay grainy-bg-blur-dark" />

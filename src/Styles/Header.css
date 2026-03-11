@@ -16,11 +16,11 @@ h1 {
   font-size: 4em;
   font-style: normal;
   font-weight: 500;
-  font-variation-settings: 
-  "slnt" 0,
-  "wdth" 100,
-  "GRAD" 100, 
-  "ROND" 75;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 100,
+    "ROND" 75;
   margin: 0;
 }
 
@@ -29,18 +29,19 @@ header > h1 {
 }
 
 .italic-r {
-  font-variation-settings: 
-  "slnt" -5,
-  "wdth" 100,
-  "GRAD" 500, 
-  "ROND" 75;
+  font-variation-settings:
+    "slnt" -5,
+    "wdth" 100,
+    "GRAD" 500,
+    "ROND" 75;
 }
+
 .italicr-r {
-  font-variation-settings: 
-  "slnt" -10,
-  "wdth" 100,
-  "GRAD" 500, 
-  "ROND" 75;
+  font-variation-settings:
+    "slnt" -10,
+    "wdth" 100,
+    "GRAD" 500,
+    "ROND" 75;
 }
 
 .italic-r:hover, .italicr-r:hover {
@@ -65,4 +66,82 @@ header > h1 > div:hover {
   gap: 1%;
   box-sizing: border-box;
   height: fit-content;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  /* Disable letter rotation on mobile */
+  header > h1 > div,
+  header > h1 > div:hover,
+  .italic-r:hover,
+  .italicr-r:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  header {
+    width: 100%;
+    left: 0;
+    height: var(--mobile-header-height);
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    padding-top: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  header > h1 {
+    font-size: 1.75rem;
+    margin-left: 50px;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Mobile title without letter animation */
+  h1.mobile-title {
+    margin-left: 50px;
+    margin-bottom: 0.25rem;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 500;
+    font-variation-settings:
+      "slnt" 0,
+      "wdth" 100,
+      "GRAD" 100,
+      "ROND" 75;
+  }
+
+  /* Remove hover effects on mobile title */
+  h1.mobile-title div,
+  h1.mobile-title span {
+    display: inline;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .filter-area {
+    width: 100%;
+    justify-content: space-around;
+    /* margin-left: 50px; */
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 480px) {
+  header > h1 {
+    font-size: 1.5rem;
+  }
+
+  h1.mobile-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-area {
+    flex-direction: column;
+    /* align-items: stretch; */
+    gap: 0.5rem;
+  }
 }

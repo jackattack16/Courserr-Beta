@@ -4,12 +4,20 @@ import courseMap from '../assets/ClassInstantiation';
 import Class from '../assets/Class';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import useWindowDimensions from '../assets/windowSizeHook';
 
 type CardAreaProps = {
   searchQuery: string;
 }
 
 function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
+  const { height, width } = useWindowDimensions();
+
+  const numberOfColumns = useMemo(() => {
+    const calculated = Math.floor((0.00189189 * width) + 0.635135);
+    return Math.max(1, Math.min(6, calculated)); // Clamp between 1 and 6 columns
+  }, [width]);
+
   const [searchParams] = useSearchParams();
   const courses: Class[] = Array.from(courseMap.values());
   
@@ -33,9 +41,9 @@ function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
       .map(item => item.course);
   }, [effectiveSearchQuery, courses]);
 
-  const columns: Class[][] = [[], [], [], []];
+  const columns: Class[][] = Array.from({ length: numberOfColumns }, () => []);
   filteredCourses.forEach((course, idx) => {
-    const colIndex = idx % 4;
+    const colIndex = idx % numberOfColumns;
     columns[colIndex].push(course);
   });
 
