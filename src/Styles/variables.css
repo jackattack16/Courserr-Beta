@@ -7,6 +7,13 @@
   --select-color: rgb(68, 144, 206);
   --select-hover-color: rgb(46, 110, 161);
   --header-height: 6.5vh;
+
+  /* Mobile breakpoint variables */
+  --mobile-breakpoint: 768px;
+  --tablet-breakpoint: 1024px;
+  --mobile-header-height: 15vh;
+  --mobile-sidebar-width: 0px;
+  --touch-target-min: 44px;
   --light-mode-accent-bg: rgb(212, 212, 212);
   --light-lifted-bg: rgba(255, 255, 255, 0.15);
   --light-lifted-bg-hover: rgba(255, 255, 255, 0.25);

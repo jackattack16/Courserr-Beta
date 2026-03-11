@@ -1,9 +1,9 @@
-  
+
 .searchbar-holder {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;  
+  justify-content: space-evenly;
   gap: 1%;
   border-radius: calc(var(--border-radius) / 2);
   border: 3px solid black;
@@ -40,4 +40,34 @@ kbd {
   line-height: 1;
   padding: 2px 4px;
   white-space: nowrap;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .searchbar-holder {
+    width: 100%;
+    max-width: calc(100% - 60px);
+    padding: 0.5rem 1rem;
+    min-height: var(--touch-target-min);
+  }
+
+  .searchbar {
+    min-width: 70%;
+    font-size: 1rem;
+  }
+
+  kbd {
+    display: none; /* Hide keyboard shortcut hints on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .searchbar-holder {
+    padding: 0.5rem;
+  }
+
+  .searchbar {
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-width: 80%;
+  }
 }

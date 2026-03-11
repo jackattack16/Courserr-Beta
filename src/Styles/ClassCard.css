@@ -37,3 +37,31 @@
   text-align: center;
   color: black;
 }
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .class-card {
+    padding: 1rem;
+  }
+
+  .class-card-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card-link {
+    font-size: 0.875rem;
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+  }
+}
+
+@media (max-width: 480px) {
+  .class-card {
+    padding: 0.75rem;
+  }
+
+  .class-card > p {
+    font-size: 0.9rem;
+  }
+}

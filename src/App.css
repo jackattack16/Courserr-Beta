@@ -6,3 +6,11 @@
   position: relative;
   overflow: hidden;
 }
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .flex-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
