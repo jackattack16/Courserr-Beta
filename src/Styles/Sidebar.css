@@ -14,11 +14,12 @@
 }
 
 
-
-.sidebar:hover {
-  width: calc(var(--sidebar-width) * 4.25);
-  /* transition: width 0.2s cubic-bezier(.13,1.21,.37,1.14); */
-  transition: width 0.5s var(--spring-easing);
+@media (pointer:fine) {
+  .sidebar:hover {
+    width: calc(var(--sidebar-width) * 4.25);
+    /* transition: width 0.2s cubic-bezier(.13,1.21,.37,1.14); */
+    transition: width 0.5s var(--spring-easing);
+  }
 }
 
 .sidebar-link {
@@ -69,11 +70,6 @@
     backdrop-filter: blur(20px);
     padding: 1rem;
     transition-timing-function: ease;
-  }
-
-  .sidebar:hover {
-    width: 80vw;
-    max-width: 300px;
   }
 
   .sidebar.mobile-open {
