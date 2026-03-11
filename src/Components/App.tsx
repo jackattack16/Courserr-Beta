@@ -35,6 +35,11 @@ function AppContent() {
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
     if (location.pathname !== '/' && query.length > 0) {
       navigate(`/?q=${encodeURIComponent(query)}`);
     }
