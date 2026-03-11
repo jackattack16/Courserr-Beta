@@ -11,7 +11,7 @@ type CardAreaProps = {
 }
 
 function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const numberOfColumns = useMemo(() => {
     const calculated = Math.floor((0.00189189 * width) + 0.635135);
