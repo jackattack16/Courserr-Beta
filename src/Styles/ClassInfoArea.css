@@ -1,7 +1,8 @@
 
 .class-info-header {
   width: 100%;
-  height: 50%;
+  min-height: 50%;
+  max-height: fit-content;
   background-color: cornflowerblue;
   border-radius: var(--border-radius);
   display: flex;
@@ -15,15 +16,18 @@
 
 .class-info-half {
   width: 50%;
-  height: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
 .no-color-link {
   color: currentColor;
+}
+
+.class-info-half:has(.class-info-title) {
+  align-items: center;
 }
 
 .class-info-title {
@@ -39,6 +43,8 @@
   padding: 1% 0.5%;
   width: min-content;
   min-width: 70%;
+  height: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .class-info-title > h1 {
@@ -57,7 +63,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5%;
+  gap: 1rem;
   width: max-content;
 }
 
@@ -68,7 +74,6 @@
 }
 
 .class-info-fourth {
-  height: 100%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -81,6 +86,7 @@
   width: 80%;
   border-radius: calc(var(--border-radius) / 2);
   border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 ul.no-bullets {
@@ -88,16 +94,15 @@ ul.no-bullets {
   padding: 0;
   margin: 0;
   width: 80%;
-  height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 5%;
+  gap: 1rem;
   justify-content: flex-start;
 }
 
 .class-info-half-content {
-  background-color: yellow;
+  background-color: var(--light-lifted-bg);
   height: 50%;
   flex: 1;
   border-radius: var(--border-radius);
@@ -110,8 +115,25 @@ ul.no-bullets {
   align-items: center;
 }
 
+/* Chart specific styling */
+.class-info-half-content .chart-container {
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
+.class-info-half-content .chart-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Make chart responsive within container */
+.class-info-half-content .recharts-wrapper {
+  background-color: var(--chart-bg, rgba(255, 255, 255, 0.95));
+  border-radius: calc(var(--border-radius) / 2);
+}
+
 .class-info-main {
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2vmin; /* TODO: change this */
+  gap: 1rem; /* TODO: change this */
 }

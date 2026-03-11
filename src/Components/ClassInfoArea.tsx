@@ -1,4 +1,5 @@
 import "../Styles/ClassInfoArea.css";
+import "../Styles/Chart.css";
 import Prerequisite from "./Prerequisite";
 import Icon from "./Icon";
 import ListElement from "./ListElement";
@@ -11,6 +12,7 @@ import {
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";
+import Chart from "./Chart";
 
 function ClassInfoArea() {
   const { id } = useParams();
@@ -38,7 +40,7 @@ function ClassInfoArea() {
         return (
           <Prerequisite key={index} course={prereqCourse} courseId={courseId} />
         );
-      } catch (error) {
+      } catch {
         return <ListElement key={index} text="See Handbook" type="warning" />;
       }
     },
@@ -54,6 +56,7 @@ function ClassInfoArea() {
     { label: "Grade Level", value: course.getUsualGrade() },
     { label: "Dual Credit", value: course.getDualCredit() },
     { label: "Class Type", value: course.getHonorsAP() },
+    { label: "Reviews", value: course.getTimePerWeekLog().length },
   ];
 
   return (
@@ -81,13 +84,13 @@ function ClassInfoArea() {
           <div className="class-info-fourth">
             <h2>Quick Look</h2>
             <ul className="no-bullets">
-              {quickLookItems.map((item, index) => ( <ListElement key={index}text={`${item.label}: ${item.value}`}/> ))}
+              {quickLookItems.map((item, index) => ( <ListElement key={index} text={`${item.label}: ${item.value}`}/> ))}
             </ul>
           </div>
         </div>
       </section>
       <div className={`class-info-half-content ${subjectClass}`}>{description}</div>
-      <div className={`class-info-half-content ${subjectClass}`}>graph goes here</div>
+      <div className={`class-info-half-content ${subjectClass}`}><Chart course={course} subjectClass={subjectClass}></Chart></div>
     </main>
   );
 }
