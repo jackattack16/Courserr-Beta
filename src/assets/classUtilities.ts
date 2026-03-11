@@ -43,7 +43,7 @@ export function getSubjectClass(subject?: string): string {
 // Thanks Genini
 export function titleCase(inputString: string) {
   // Convert to lowercase and split into words
-  let words = inputString.toLowerCase().split(' ');
+  const words = inputString.toLowerCase().split(' ');
 
   // Capitalize the first letter of each word
   for (let i = 0; i < words.length; i++) {
@@ -110,4 +110,11 @@ export function isCloseMatch(course: Class, query: string): boolean {
     className.startsWith(q) ||
     (q.length >= 3 && className.includes(q))
   );
+}
+
+export function* incrementNumber(start: number) {
+  let n = start;
+  while(true) {
+    yield n++;
+  }
 }

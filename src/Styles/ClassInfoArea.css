@@ -44,6 +44,7 @@
   width: min-content;
   min-width: 70%;
   height: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .class-info-title > h1 {
@@ -85,6 +86,7 @@
   width: 80%;
   border-radius: calc(var(--border-radius) / 2);
   border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 ul.no-bullets {
@@ -100,7 +102,7 @@ ul.no-bullets {
 }
 
 .class-info-half-content {
-  background-color: yellow;
+  background-color: var(--light-lifted-bg);
   height: 50%;
   flex: 1;
   border-radius: var(--border-radius);
@@ -111,6 +113,23 @@ ul.no-bullets {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Chart specific styling */
+.class-info-half-content .chart-container {
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
+.class-info-half-content .chart-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Make chart responsive within container */
+.class-info-half-content .recharts-wrapper {
+  background-color: var(--chart-bg, rgba(255, 255, 255, 0.95));
+  border-radius: calc(var(--border-radius) / 2);
 }
 
 .class-info-main {

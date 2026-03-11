@@ -77,6 +77,10 @@ class Class {
         }
     }
 
+    getAllGrades() {
+      return this.grades;
+    }
+
     getAverageRating(): number {
         if (!Array.isArray(this.ratings) || this.ratings.length === 0) return 0;
         const sum = this.ratings.reduce((acc, rating) => acc + rating, 0);
@@ -146,7 +150,7 @@ class Class {
         return "TBD";
       } else {
         return this.averageGrade;
-       } 
+      } 
     }
     getRatings() { return this.ratings; }
     getComments() { return this.comments; }
