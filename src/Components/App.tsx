@@ -2,6 +2,7 @@
 // import viteLogo from '/vite.svg'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { lazy, Suspense, useState, useMemo } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 
 import '../App.css'
 import Header from './Header'
@@ -77,6 +78,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppContent />
+      <Analytics />
     </BrowserRouter>
   )
 }
