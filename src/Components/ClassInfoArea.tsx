@@ -30,6 +30,7 @@ function ClassInfoArea() {
   // Creates an array of JSX elements that map to the prerequsites by catching an error thrown if the class does not exist
 
   // TODO: Parse out multiple check handbooks
+  let hasAddedCheckHandbook:boolean = false;
   const mapedPrereqs = prerequisitesArray.map(
     (prereqCourse: string, index: number) => {
       if (prereqCourse === "None") {
@@ -41,7 +42,10 @@ function ClassInfoArea() {
           <Prerequisite key={index} course={prereqCourse} courseId={courseId} />
         );
       } catch {
-        return <ListElement key={index} text="See Handbook" type="warning" />;
+        if(!hasAddedCheckHandbook) {
+          hasAddedCheckHandbook = true;
+          return <ListElement key={index} text="See handbook for more details" type="warning" />;
+        }  
       }
     },
   );

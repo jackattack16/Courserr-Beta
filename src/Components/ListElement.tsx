@@ -10,7 +10,7 @@ function ListElement({ type, text }: listElementProps) {
     // Todo: make this into a div with proper text format
     <li>
       <button className={`list-element ${type}`}>
-        {text}
+        <p>{text}</p>
       </button>
     </li>
   )

@@ -11,7 +11,7 @@ function Prerequisite({ course, courseId }: prereqPorps) {
     <Link to={`/class/${courseId}`} className='no-color-link'>
       <li>
         <button className='list-element prereq-button'>
-          {course}
+          <p>{course}</p>
         </button>
       </li>
     </Link>
