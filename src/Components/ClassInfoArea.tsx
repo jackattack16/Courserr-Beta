@@ -6,11 +6,9 @@ import ListElement from "./ListElement";
 import type Class from "../assets/Class";
 import {
   getSubjectClass,
-  subjectToIcon,
-  titleCase,
-  getPrereqCourseId,
+  subjectToIcon, getPrereqCourseId,
   calculateScore,
-  getDepartment,
+  getDepartment
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";

@@ -6,11 +6,10 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  LabelList,
 } from "recharts";
 import type Class from "../assets/Class";
 
-import CustomTooltip from './ChartTooltip.tsx'
+import CustomTooltip from './ChartTooltip.tsx';
 
 interface chartProps {
   course: Class;
