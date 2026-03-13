@@ -39,6 +39,28 @@ export function getSubjectClass(subject?: string): string {
   return 'misc';
 }
 
+export function getDepartment(subject?: string): string {
+  if (!subject) return 'misc';
+  const s = subject.toLowerCase();
+
+  if (s.includes('agri') || s.includes('agriculture')) return 'Agriculture Department';
+  if (s.includes('cte') || s.includes('manufactur') || s.includes('technology') || s.includes('engineering') || s.includes('applied')) return 'Career Technical Education Department';
+  if (s.includes('art') || s.includes('arts') || s.includes('arteducation')) return 'Arts Department';
+  if (s.includes('business') || s.includes('finance') || s.includes('marketing') || s.includes('management')) return 'Business Department';
+  if (s.includes('human') || s.includes('services') || s.includes('humanservices')) return 'Human Services Department'; 
+  if (s.includes('information') || s.includes('solution')) return 'Information Solutions Department';
+  if (s.includes('math') || s.includes('mathematics')) return 'Mathematics Department';
+  if (s.includes('music')) return 'Music Department';
+  if (s.includes('physical') || s === 'pe' || s.includes('education')) return 'Physical Education Department';
+  if (s.includes('science') || s.includes('chem') || s.includes('bio') || s.includes('physics')) return 'Science Department';
+  if (s.includes('social') || s.includes('history') || s.includes('studies')) return 'Social Studies Department';
+  if (s.includes('world') || s.includes('language') || s.includes('foreign')) return 'Foreign Language Department';
+  if (s.includes('english')) return 'English Department';
+  if (s.includes('health')) return 'Health Department';
+
+  return 'Misc Department';
+}
+
 
 // Thanks Genini
 export function titleCase(inputString: string) {
@@ -56,7 +78,6 @@ export function titleCase(inputString: string) {
 
 
 // Old function
-// TODO: Rewrite this to make it better
 export function getPrereqCourseId(className: string):number {
 
   // Find course by name to get its ID
@@ -79,19 +100,37 @@ export function getPrereqCourseId(className: string):number {
   return targetCourse.getCourseId();
 }
 
-export function calculateScore(course: Class, query: string): number {
+export function calculateScore(course: Class, query: string, fuzzyMatch?: boolean): number {
   let score = 0;
   const className = course.getClassName().toLowerCase();
   const shortName = course.getShortName().toLowerCase();
   const tags = course.getTags().join(' ').toLowerCase();
   const subject = course.getSubject().toLowerCase();
   const description = course.getDescription().toLowerCase();
+  
+  switch (query) {
+    case className:
+      score += 10;
+      break;
+  
+    case shortName:
+      score += 8;
+      break;
 
-  if (className === query) score += 10;
-  if (shortName === query) score += 8;
+    default:
+      if (!fuzzyMatch) break;
+      const classNameArray = className.split(" ");
+      const queryArray = query.split(" ");
 
-  if (className.includes(query)) score += 5;
-  if (shortName.includes(query)) score += 4;
+      for (query of queryArray) {
+        if (classNameArray.find((namePart) => namePart.includes(query))) {
+          score += 2;
+        }
+      }
+  }
+
+  if (className.startsWith(query)) score += 6;
+  if (className.includes(query) || shortName.includes(query)) score += 4;
   if (tags.includes(query)) score += 3;
   if (subject.includes(query)) score += 2;
   if (description.includes(query)) score += 1;

@@ -1,4 +1,5 @@
 import '../Styles/List-Elements.css'
+import Icon from './Icon';
 
 type listElementProps = {
   type?: string;
@@ -7,10 +8,11 @@ type listElementProps = {
 function ListElement({ type, text }: listElementProps) {
 
   return (
-    // Todo: make this into a div with proper text format
     <li>
       <button className={`list-element ${type}`}>
-        {text}
+        {type ? <Icon name="error"/> : ""}
+        <p>{text}</p>
+        {type ? <Icon name="error"/> : ""}
       </button>
     </li>
   )

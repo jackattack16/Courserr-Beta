@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import type Class from "../assets/Class";
 
-import CustomTooltip from './ChartTooltip.tsx'
+import CustomTooltip from './ChartTooltip.tsx';
 
 interface chartProps {
   course: Class;
@@ -172,7 +172,7 @@ function Chart({ course, subjectClass }: chartProps) {
         <BarChart
           data={stackedData}
           style={{background: "none"}}
-          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 10, left: -40, bottom: 0 }}
           stackOffset="sign"
         >
           <CartesianGrid stroke={colors.grid} strokeDasharray="3 3" />

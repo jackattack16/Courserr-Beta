@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Google Sans Flex', system-ui, sans-serif;
+  /* font-family: "Comic Relief", system-ui; */
   /* background-image: url('./assets/_DSC4836.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -20,3 +21,7 @@ body {
   backdrop-filter: blur(20vh);
   filter: url(#grain);
 }
+/* 
+p {
+  font-family: 'Google Sans Flex', system-ui, sans-serif;
+} */

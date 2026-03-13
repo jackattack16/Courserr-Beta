@@ -6,15 +6,20 @@ import ListElement from "./ListElement";
 import type Class from "../assets/Class";
 import {
   getSubjectClass,
-  subjectToIcon,
-  titleCase,
-  getPrereqCourseId,
+  subjectToIcon, getPrereqCourseId,
+  calculateScore,
+  getDepartment
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";
 import Chart from "./Chart";
+import ClassCard from "./ClassCard";
 
-function ClassInfoArea() {
+interface classInfoAreaProps {
+  bookmark: (course: number) => void;
+  bookmarkedClasses: number[];
+}
+function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
   const { id } = useParams();
   const course: Class = courseMap.get(Number(id));
 
@@ -29,7 +34,7 @@ function ClassInfoArea() {
 
   // Creates an array of JSX elements that map to the prerequsites by catching an error thrown if the class does not exist
 
-  // TODO: Parse out multiple check handbooks
+  let hasAddedCheckHandbook:boolean = false;
   const mapedPrereqs = prerequisitesArray.map(
     (prereqCourse: string, index: number) => {
       if (prereqCourse === "None") {
@@ -41,11 +46,40 @@ function ClassInfoArea() {
           <Prerequisite key={index} course={prereqCourse} courseId={courseId} />
         );
       } catch {
-        return <ListElement key={index} text="See Handbook" type="warning" />;
+        if(!hasAddedCheckHandbook) {
+          hasAddedCheckHandbook = true;
+          return <ListElement key={index} text="See handbook for more details" type="warning" />;
+        }  
       }
     },
   );
+  const updateBookmark = () => {
+    bookmark(course.getCourseId());
+  }
 
+  const courses: Class[] = Array.from(courseMap.values());
+
+  const moreLikeThis = courses.filter((courseForFilter) => courseForFilter.getSubject() === course.getSubject());
+  console.log(nameOfClass.split(" ")[0]);
+  let evenMoreLikeThis = moreLikeThis
+    .map(course => ({course, score: calculateScore(course, nameOfClass.split(" ")[0].toLowerCase(), true)}))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(item => item.course);
+
+    let i = -1;
+    while (evenMoreLikeThis.length < 4) {
+      i++;
+      if (!evenMoreLikeThis.includes(moreLikeThis[i])) evenMoreLikeThis.push(moreLikeThis[i]);
+      if (i > moreLikeThis.length) {
+        evenMoreLikeThis.push(courses[i]);
+      }
+    }
+
+  evenMoreLikeThis = evenMoreLikeThis.slice(1, 5);
+  
+  console.log(evenMoreLikeThis);
+  
   const quickLookItems = [
     {
       label: "Homework",
@@ -59,6 +93,7 @@ function ClassInfoArea() {
     { label: "Reviews", value: course.getTimePerWeekLog().length },
   ];
 
+
   return (
     <main className="class-info-main">
       <section className={`class-info-header ${subjectClass}`}>
@@ -69,29 +104,41 @@ function ClassInfoArea() {
             <div>
               <Icon name={iconName} />
               <h2 className="department">
-                {titleCase(subjectClass + " department")}
+                {getDepartment(course.getSubject())}
               </h2>
+              <button className="invisible-button" onClick={updateBookmark}><Icon name="bookmark" className="class-card-icon" filled={bookmarkedClasses.includes(course.getCourseId())}/></button>
             </div>
           </div>
         </div>
         <div className="class-info-half">
           <div className="class-info-fourth tags">
-            <h2>Prerequisites</h2>
+            <h2><Icon name="inbox_text_asterisk"/>Prerequisites<Icon name="inbox_text_asterisk"/></h2>
             <ul className="no-bullets">
               {mapedPrereqs.map((course) => course)}
             </ul>
           </div>
           <div className="class-info-fourth">
-            <h2>Quick Look</h2>
+            <h2><Icon name="eyeglasses_2"/>Quick Look<Icon name="eyeglasses_2"/></h2>
             <ul className="no-bullets">
               {quickLookItems.map((item, index) => ( <ListElement key={index} text={`${item.label}: ${item.value}`}/> ))}
             </ul>
           </div>
         </div>
       </section>
-      <div className={`class-info-half-content ${subjectClass}`}>{description}</div>
+      <div className={`class-info-half-content ${subjectClass}`}><p>{description}</p></div>
       <div className={`class-info-half-content ${subjectClass}`}><Chart course={course} subjectClass={subjectClass}></Chart></div>
+
+      <div className={`more-like-this ${subjectClass}`}>
+        <div style={{width: "100"}}><h2><Icon name="neurology"/>More Like This</h2></div>
+        <section className={"more-like-this-container"}>
+          {evenMoreLikeThis.map((course) => (
+                <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={bookmarkedClasses.includes(course.getCourseId())} query={""}/>
+              ))}
+        </section>
+      </div>
+      
     </main>
+    
   );
 }
 
