@@ -9,12 +9,17 @@ import {
   subjectToIcon,
   titleCase,
   getPrereqCourseId,
+  calculateScore,
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";
 import Chart from "./Chart";
+import ClassCard from "./ClassCard";
 
-function ClassInfoArea() {
+interface classInfoAreaProps {
+  bookmark: (course: number) => void;
+}
+function ClassInfoArea({ bookmark }: classInfoAreaProps) {
   const { id } = useParams();
   const course: Class = courseMap.get(Number(id));
 
@@ -49,6 +54,29 @@ function ClassInfoArea() {
     },
   );
 
+  const courses: Class[] = Array.from(courseMap.values());
+
+  const moreLikeThis = courses.filter((courseForFilter) => courseForFilter.getSubject() === course.getSubject());
+  console.log(nameOfClass.split(" ")[0]);
+  let evenMoreLikeThis = moreLikeThis
+    .map(course => ({course, score: calculateScore(course, nameOfClass.split(" ")[0].toLowerCase(), true)}))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(item => item.course);
+
+    let i = -1;
+    while (evenMoreLikeThis.length < 4) {
+      i++;
+      if (!evenMoreLikeThis.includes(moreLikeThis[i])) evenMoreLikeThis.push(moreLikeThis[i]);
+      if (i > moreLikeThis.length) {
+        evenMoreLikeThis.push(courses[i]);
+      }
+    }
+
+  evenMoreLikeThis = evenMoreLikeThis.slice(1, 5);
+  
+  console.log(evenMoreLikeThis);
+  
   const quickLookItems = [
     {
       label: "Homework",
@@ -61,6 +89,8 @@ function ClassInfoArea() {
     { label: "Class Type", value: course.getHonorsAP() },
     { label: "Reviews", value: course.getTimePerWeekLog().length },
   ];
+
+
 
   return (
     <main className="class-info-main">
@@ -94,7 +124,18 @@ function ClassInfoArea() {
       </section>
       <div className={`class-info-half-content ${subjectClass}`}><p>{description}</p></div>
       <div className={`class-info-half-content ${subjectClass}`}><Chart course={course} subjectClass={subjectClass}></Chart></div>
+
+      <div className={`more-like-this ${subjectClass}`}>
+        <div style={{width: "100"}}><h2>More Like This</h2></div>
+        <section className={"more-like-this-container"}>
+          {evenMoreLikeThis.map((course) => (
+                <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={false} query={""}/>
+              ))}
+        </section>
+      </div>
+      
     </main>
+    
   );
 }
 

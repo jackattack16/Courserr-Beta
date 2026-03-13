@@ -139,6 +139,36 @@ ul.no-bullets {
   gap: 1rem; /* TODO: change this */
 }
 
+div.more-like-this {
+  background-color: color-mix(in srgb, currentColor 80%, var(--light-lifted-bg) 20%) !important;
+  border: 2px solid var(--light-lifted-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.more-like-this > div > h2 {
+  text-align: center;
+  background-color: var(--light-lifted-bg);
+  /* color: color-mix(in srgb, currentColor 50%, black 50%); */
+  color: white;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: calc(var(--border-radius) / 2);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+section.more-like-this-container {
+  display: flex;
+  flex-direction: row;
+  
+  box-sizing: border-box;
+  width: 100%;
+  gap: 1rem;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .class-info-header {
@@ -149,6 +179,10 @@ ul.no-bullets {
   .class-info-header > div {
     width: 100%;
     height: auto;
+  }
+
+  section.more-like-this {
+    flex-direction: column;
   }
 
   .class-info-half {
