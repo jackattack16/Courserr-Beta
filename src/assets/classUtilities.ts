@@ -79,19 +79,37 @@ export function getPrereqCourseId(className: string):number {
   return targetCourse.getCourseId();
 }
 
-export function calculateScore(course: Class, query: string): number {
+export function calculateScore(course: Class, query: string, fuzzyMatch?: boolean): number {
   let score = 0;
   const className = course.getClassName().toLowerCase();
   const shortName = course.getShortName().toLowerCase();
   const tags = course.getTags().join(' ').toLowerCase();
   const subject = course.getSubject().toLowerCase();
   const description = course.getDescription().toLowerCase();
+  
+  switch (query) {
+    case className:
+      score += 10;
+      break;
+  
+    case shortName:
+      score += 8;
+      break;
 
-  if (className === query) score += 10;
-  if (shortName === query) score += 8;
+    default:
+      if (!fuzzyMatch) break;
+      const classNameArray = className.split(" ");
+      const queryArray = query.split(" ");
 
-  if (className.includes(query)) score += 5;
-  if (shortName.includes(query)) score += 4;
+      for (query of queryArray) {
+        if (classNameArray.find((namePart) => namePart.includes(query))) {
+          score += 2;
+        }
+      }
+  }
+
+  if (className.startsWith(query)) score += 6;
+  if (className.includes(query) || shortName.includes(query)) score += 4;
   if (tags.includes(query)) score += 3;
   if (subject.includes(query)) score += 2;
   if (description.includes(query)) score += 1;

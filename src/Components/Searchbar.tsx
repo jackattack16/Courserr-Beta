@@ -22,6 +22,7 @@ function Searchbar({ updateSearchQuery, clearTrigger }: searchbarProps) {
     }
   }, [value, updateSearchQuery]);
 
+
   return (
     <>
     <div className='searchbar-holder grainy-bg-blur'>

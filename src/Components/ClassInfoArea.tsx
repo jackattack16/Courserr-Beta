@@ -89,7 +89,7 @@ function ClassInfoArea() {
           </div>
         </div>
       </section>
-      <div className={`class-info-half-content ${subjectClass}`}>{description}</div>
+      <div className={`class-info-half-content ${subjectClass}`}><p>{description}</p></div>
       <div className={`class-info-half-content ${subjectClass}`}><Chart course={course} subjectClass={subjectClass}></Chart></div>
     </main>
   );

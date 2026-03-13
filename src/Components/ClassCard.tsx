@@ -8,9 +8,12 @@ import { memo } from 'react';
 
 interface Props {
   course: Class;
+  bookmark: (course: number) => void;
+  filled: boolean;
+  query: string;
 }
 
-const ClassCard = memo(function ClassCard({ course }: Props) {
+const ClassCard = memo(function ClassCard({ course, bookmark, filled, query }: Props) {
   const title:string = course.getShortName() || 'Untitled Class';
   const description:string = course.getDescription() || '';
   const subjectClass:string = getSubjectClass(course.getSubject());
@@ -22,18 +25,36 @@ const ClassCard = memo(function ClassCard({ course }: Props) {
     import('./ClassInfoArea')
   };
 
+  const updateBookmark = () => {
+    bookmark(courseID);
+  }
+
+
   return (
     <>
       <div className={`class-card ${subjectClass}`}>
         <div className="class-card-header">
           <Icon name={iconName} className="class-card-icon" />
-          <h1><Link to={`/class/${courseID}`} className="card-link" onMouseEnter={preloadClassInfo}>{title}</Link></h1>
-          <Icon name="bookmark" className="class-card-icon" />
+          <h1><Link to={`/class/${courseID}`} className="card-link" onMouseEnter={preloadClassInfo}><span>{highlightText(title, query)}</span></Link></h1>
+          <button className="invisible-button" onClick={updateBookmark}><Icon name="bookmark" className="class-card-icon" filled={filled}/></button>
+          
         </div>
-        <p className="class-card-description">{description}</p>
+        <p className="class-card-description"><span>{highlightText(description, query)}</span></p>
       </div>
     </>
   );
 });
+
+function highlightText(text: string, query: string) {
+  if (!query) return text;
+  // return text;
+  const parts = text.split(new RegExp(`(${query})`, 'gi'));
+
+  return parts.map((part, i) => 
+    part.toLowerCase() === query.toLowerCase() 
+      ? <mark key={i} style={{ background: "#fde68a", borderRadius: '2px'}}>{part}</mark>
+      : part
+  );
+}
 
 export default ClassCard;

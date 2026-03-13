@@ -5,12 +5,15 @@ import Class from '../assets/Class';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useWindowDimensions from '../assets/windowSizeHook';
+import { calculateScore } from '../assets/classUtilities';
 
 type CardAreaProps = {
   searchQuery: string;
+  bookmark: (course: number) => void;
+  bookmarkedClasses: number[];
 }
 
-function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
+function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses }: CardAreaProps) {
   const { width } = useWindowDimensions();
 
   const numberOfColumns = useMemo(() => {
@@ -25,24 +28,19 @@ function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
   
   // Use prop search query if available, otherwise use URL query
   const effectiveSearchQuery = propSearchQuery || urlQuery;
-
+  const q = effectiveSearchQuery.toLowerCase();
   const filteredCourses = useMemo(() => {
-    if (!effectiveSearchQuery) return courses;
-    
-    const q = effectiveSearchQuery.toLowerCase();
-    
+    if (!effectiveSearchQuery) return courses;  
     return courses
-      .map(course => ({
-        course,
-        score: calculateScore(course, q)
-      }))
+      .map(course => ({course, score: calculateScore(course, q, true)}))
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .map(item => item.course);
   }, [effectiveSearchQuery, courses]);
-
+  
   const columns: Class[][] = Array.from({ length: numberOfColumns }, () => []);
   filteredCourses.forEach((course, idx) => {
+    // console.log(course.getClassName());
     const colIndex = idx % numberOfColumns;
     columns[colIndex].push(course);
   });
@@ -53,33 +51,13 @@ function CardArea({ searchQuery: propSearchQuery }: CardAreaProps) {
         {columns.map((col, ci) => (
           <div className='class-column' key={ci}>
             {col.map((course) => (
-              <ClassCard course={course} key={course.getCourseId()} />
+              <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={bookmarkedClasses.includes(course.getCourseId())} query={q}/>
             ))}
           </div>
         ))}
       </main>
     </>
   )
-}
-
-function calculateScore(course: Class, query: string): number {
-  let score = 0;
-  const className = course.getClassName().toLowerCase();
-  const shortName = course.getShortName().toLowerCase();
-  const tags = course.getTags().join(' ').toLowerCase();
-  const subject = course.getSubject().toLowerCase();
-  const description = course.getDescription().toLowerCase();
-
-  if (className === query) score += 10;
-  if (shortName === query) score += 8;
-
-  if (className.includes(query)) score += 5;
-  if (shortName.includes(query)) score += 4;
-  if (tags.includes(query)) score += 3;
-  if (subject.includes(query)) score += 2;
-  if (description.includes(query)) score += 1;
-
-  return score;
 }
 
 export default CardArea;

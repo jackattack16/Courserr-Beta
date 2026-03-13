@@ -21,6 +21,8 @@ function Loading() {
 function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
+  const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<Number>);
+
   const location = useLocation();
   const navigate = useNavigate();
   const [, setSearchParams] = useSearchParams();
@@ -51,7 +53,7 @@ function AppContent() {
     
     const q = searchQuery.toLowerCase();
     const scored = courses
-      .map(course => ({ course, score: calculateScore(course, q) }))
+      .map(course => ({ course, score: calculateScore(course, q ,false) }))
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score);
     
@@ -66,13 +68,30 @@ function AppContent() {
     navigate(`/class/${autoNavigate}`, { replace: true });
   }
 
+  const updateBookmarks = (course: number) => {
+    try {
+      const item = localStorage.getItem('bookmarkedClasses');
+      const parsedBookmarks = item ? Array.from(JSON.parse(item), Number) : [];
+      console.log(parsedBookmarks);
+      if (parsedBookmarks.includes(course)) {
+        parsedBookmarks.splice(parsedBookmarks.indexOf(course), 1);
+      } else {
+        parsedBookmarks.push(course);
+      }
+      localStorage.setItem('bookmarkedClasses', JSON.stringify(parsedBookmarks));
+      setBookmarkedClasses(parsedBookmarks);
+    } catch {
+      setBookmarkedClasses([]);
+    }
+  };
+
   return (
     <div className='flex-container'>
       <Sidebar onHomeClick={handleHomeClick} />
       <Header updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger}/>
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route path="/" element={<CardArea searchQuery={searchQuery} />} />
+          <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
           <Route path="/class/:id" element={<ClassInfoArea />} />
         </Routes>
       </Suspense>

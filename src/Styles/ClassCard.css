@@ -24,13 +24,24 @@
 }
 
 .card-link {
+  /* font-family: "Comic Relief", system-ui; */
   font-size: 0.35em;
-  text-decoration: underline;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
+  /* font-weight: 700;  */
+}
+
+.invisible-button {
+  height: min-content;
+  width: fit-content;
+  padding: none;
+  margin: none;
+  background: none;
+  border: none;
+  color: inherit;
 }
 
 .class-card > p {
