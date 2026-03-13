@@ -92,7 +92,7 @@ function AppContent() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
-          <Route path="/class/:id" element={<ClassInfoArea />} />
+          <Route path="/class/:id" element={<ClassInfoArea bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
         </Routes>
       </Suspense>
     </div>

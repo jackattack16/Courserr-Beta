@@ -18,8 +18,9 @@ import ClassCard from "./ClassCard";
 
 interface classInfoAreaProps {
   bookmark: (course: number) => void;
+  bookmarkedClasses: number[];
 }
-function ClassInfoArea({ bookmark }: classInfoAreaProps) {
+function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
   const { id } = useParams();
   const course: Class = courseMap.get(Number(id));
 
@@ -129,7 +130,7 @@ function ClassInfoArea({ bookmark }: classInfoAreaProps) {
         <div style={{width: "100"}}><h2>More Like This</h2></div>
         <section className={"more-like-this-container"}>
           {evenMoreLikeThis.map((course) => (
-                <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={false} query={""}/>
+                <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={bookmarkedClasses.includes(course.getCourseId())} query={""}/>
               ))}
         </section>
       </div>
