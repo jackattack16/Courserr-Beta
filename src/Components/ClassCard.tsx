@@ -29,13 +29,20 @@ const ClassCard = memo(function ClassCard({ course, bookmark, filled, query }: P
     bookmark(courseID);
   }
 
+  const scrollUp = () => {
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  }
 
   return (
     <>
       <div className={`class-card ${subjectClass}`}>
         <div className="class-card-header">
           <Icon name={iconName} className="class-card-icon" />
-          <h1><Link to={`/class/${courseID}`} className="card-link" onMouseEnter={preloadClassInfo}><span>{highlightText(title, query)}</span></Link></h1>
+          <h1><Link to={`/class/${courseID}`} className="card-link" onMouseEnter={preloadClassInfo} onClick={scrollUp}><span>{highlightText(title, query)}</span></Link></h1>
           <button className="invisible-button" onClick={updateBookmark}><Icon name="bookmark" className="class-card-icon" filled={filled}/></button>
           
         </div>

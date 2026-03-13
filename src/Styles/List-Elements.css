@@ -36,9 +36,17 @@
 }
 
 .warning {
-  border: 3px solid red;
+  border: 3px solid white;
   font-weight: 700;
   color: black;
+  text-align: center;
+  padding-left: 0;
+  font-size: 1.15em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
 }
 
 .list-element > p {

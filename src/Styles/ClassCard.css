@@ -39,6 +39,7 @@
 }
 
 .invisible-button {
+  all: unset;
   height: min-content;
   width: fit-content;
   padding: none;
@@ -46,6 +47,8 @@
   background: none;
   border: none;
   color: inherit;
+  display: flex;
+  
 }
 
 .class-card > p {

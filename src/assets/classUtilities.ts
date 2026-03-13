@@ -39,6 +39,28 @@ export function getSubjectClass(subject?: string): string {
   return 'misc';
 }
 
+export function getDepartment(subject?: string): string {
+  if (!subject) return 'misc';
+  const s = subject.toLowerCase();
+
+  if (s.includes('agri') || s.includes('agriculture')) return 'Agriculture Department';
+  if (s.includes('cte') || s.includes('manufactur') || s.includes('technology') || s.includes('engineering') || s.includes('applied')) return 'Career Technical Education Department';
+  if (s.includes('art') || s.includes('arts') || s.includes('arteducation')) return 'Arts Department';
+  if (s.includes('business') || s.includes('finance') || s.includes('marketing') || s.includes('management')) return 'Business Department';
+  if (s.includes('human') || s.includes('services') || s.includes('humanservices')) return 'Human Services Department'; 
+  if (s.includes('information') || s.includes('solution')) return 'Information Solutions Department';
+  if (s.includes('math') || s.includes('mathematics')) return 'Mathematics Department';
+  if (s.includes('music')) return 'Music Department';
+  if (s.includes('physical') || s === 'pe' || s.includes('education')) return 'Physical Education Department';
+  if (s.includes('science') || s.includes('chem') || s.includes('bio') || s.includes('physics')) return 'Science Department';
+  if (s.includes('social') || s.includes('history') || s.includes('studies')) return 'Social Studies Department';
+  if (s.includes('world') || s.includes('language') || s.includes('foreign')) return 'Foreign Language Department';
+  if (s.includes('english')) return 'English Department';
+  if (s.includes('health')) return 'Health Department';
+
+  return 'Misc Department';
+}
+
 
 // Thanks Genini
 export function titleCase(inputString: string) {

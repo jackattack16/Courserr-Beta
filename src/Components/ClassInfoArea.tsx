@@ -10,6 +10,7 @@ import {
   titleCase,
   getPrereqCourseId,
   calculateScore,
+  getDepartment,
 } from "../assets/classUtilities";
 import { useParams } from "react-router-dom";
 import courseMap from "../assets/ClassInstantiation";
@@ -54,6 +55,9 @@ function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
       }
     },
   );
+  const updateBookmark = () => {
+    bookmark(course.getCourseId());
+  }
 
   const courses: Class[] = Array.from(courseMap.values());
 
@@ -92,7 +96,6 @@ function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
   ];
 
 
-
   return (
     <main className="class-info-main">
       <section className={`class-info-header ${subjectClass}`}>
@@ -103,20 +106,21 @@ function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
             <div>
               <Icon name={iconName} />
               <h2 className="department">
-                {titleCase(subjectClass + " department")}
+                {getDepartment(course.getSubject())}
               </h2>
+              <button className="invisible-button" onClick={updateBookmark}><Icon name="bookmark" className="class-card-icon" filled={bookmarkedClasses.includes(course.getCourseId())}/></button>
             </div>
           </div>
         </div>
         <div className="class-info-half">
           <div className="class-info-fourth tags">
-            <h2>Prerequisites</h2>
+            <h2><Icon name="inbox_text_asterisk"/>Prerequisites<Icon name="inbox_text_asterisk"/></h2>
             <ul className="no-bullets">
               {mapedPrereqs.map((course) => course)}
             </ul>
           </div>
           <div className="class-info-fourth">
-            <h2>Quick Look</h2>
+            <h2><Icon name="eyeglasses_2"/>Quick Look<Icon name="eyeglasses_2"/></h2>
             <ul className="no-bullets">
               {quickLookItems.map((item, index) => ( <ListElement key={index} text={`${item.label}: ${item.value}`}/> ))}
             </ul>
@@ -127,7 +131,7 @@ function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
       <div className={`class-info-half-content ${subjectClass}`}><Chart course={course} subjectClass={subjectClass}></Chart></div>
 
       <div className={`more-like-this ${subjectClass}`}>
-        <div style={{width: "100"}}><h2>More Like This</h2></div>
+        <div style={{width: "100"}}><h2><Icon name="neurology"/>More Like This</h2></div>
         <section className={"more-like-this-container"}>
           {evenMoreLikeThis.map((course) => (
                 <ClassCard course={course} key={course.getCourseId()} bookmark={bookmark} filled={bookmarkedClasses.includes(course.getCourseId())} query={""}/>
