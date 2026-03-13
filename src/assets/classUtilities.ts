@@ -56,7 +56,6 @@ export function titleCase(inputString: string) {
 
 
 // Old function
-// TODO: Rewrite this to make it better
 export function getPrereqCourseId(className: string):number {
 
   // Find course by name to get its ID

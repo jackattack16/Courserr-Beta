@@ -7,7 +7,6 @@ type listElementProps = {
 function ListElement({ type, text }: listElementProps) {
 
   return (
-    // Todo: make this into a div with proper text format
     <li>
       <button className={`list-element ${type}`}>
         <p>{text}</p>
