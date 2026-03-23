@@ -6,14 +6,17 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useWindowDimensions from '../assets/windowSizeHook';
 import { calculateScore } from '../assets/classUtilities';
+import type { FilterState } from '../assets/filterTypes';
+import applyFilters from '../assets/applyFilters';
 
 type CardAreaProps = {
   searchQuery: string;
   bookmark: (course: number) => void;
   bookmarkedClasses: number[];
+  activeFilters: FilterState;
 }
 
-function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses }: CardAreaProps) {
+function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses, activeFilters }: CardAreaProps) {
   const { width } = useWindowDimensions();
 
   const numberOfColumns = useMemo(() => {
@@ -23,27 +26,35 @@ function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses }:
 
   const [searchParams] = useSearchParams();
   const courses: Class[] = Array.from(courseMap.values());
-  
+
   const urlQuery = searchParams.get('q') || '';
-  
-  // Use prop search query if available, otherwise use URL query
-  const effectiveSearchQuery = propSearchQuery || urlQuery;
-  const q = effectiveSearchQuery.toLowerCase();
+
   const filteredCourses = useMemo(() => {
-    if (!effectiveSearchQuery) return courses;  
-    return courses
-      .map(course => ({course, score: calculateScore(course, q, true)}))
-      .filter(item => item.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .map(item => item.course);
-  }, [effectiveSearchQuery, courses]);
-  
+    // Apply filters first
+    let filtered = courses.filter(course => applyFilters(course, activeFilters));
+
+    // Then apply search
+    const effectiveSearchQuery = propSearchQuery || urlQuery;
+    if (effectiveSearchQuery) {
+      const q = effectiveSearchQuery.toLowerCase();
+      filtered = filtered
+        .map(course => ({ course, score: calculateScore(course, q, true) }))
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map(item => item.course);
+    }
+
+    return filtered;
+  }, [courses, activeFilters, propSearchQuery, urlQuery]);
+
   const columns: Class[][] = Array.from({ length: numberOfColumns }, () => []);
   filteredCourses.forEach((course, idx) => {
-    // console.log(course.getClassName());
     const colIndex = idx % numberOfColumns;
     columns[colIndex].push(course);
   });
+
+  const effectiveSearchQuery = propSearchQuery || urlQuery;
+  const q = effectiveSearchQuery.toLowerCase();
 
   return (
     <>

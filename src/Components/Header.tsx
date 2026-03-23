@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import "../Styles/Header.css";
 import FilterDialouge from "./Dialouge";
 // import Icon from "./Icon";
@@ -5,12 +6,15 @@ import Searchbar from "./Searchbar";
 // import TextIconButton from "./TextIconButton";
 import useWindowDimensions from '../assets/windowSizeHook';
 import useScrollDirection from '../assets/useScrollDirection';
+import type { FilterState } from '../assets/filterTypes';
 
 type headerProps = {
   updateSearchQuery: (query: string) => void;
   clearTrigger?: number;
+  activeFilters: FilterState;
+  setActiveFilters: Dispatch<SetStateAction<FilterState>>;
 }
-function Header( {updateSearchQuery, clearTrigger}: headerProps) {
+function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilters}: headerProps) {
   const { width } = useWindowDimensions();
   const { scrollDirection, isScrolled } = useScrollDirection();
   const isMobile = width <= 768;
@@ -30,7 +34,7 @@ function Header( {updateSearchQuery, clearTrigger}: headerProps) {
 
         <div className="filter-area">
           <Searchbar updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger}></Searchbar>
-          {isMobile ? <></> : <FilterDialouge isMobile={isMobile}></FilterDialouge>}
+          {isMobile ? <></> : <FilterDialouge isMobile={isMobile} activeFilters={activeFilters} setActiveFilters={setActiveFilters}></FilterDialouge>}
         </div>
       </header>
     </>

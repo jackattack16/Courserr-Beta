@@ -1,8 +1,8 @@
-
-
 .filter-button {
-  height: 45%;
-  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.4em 0.8em;
   box-sizing: border-box;
   text-wrap: nowrap;
   border: 2px solid black;
@@ -11,8 +11,8 @@
   font-size: 1em;
   font-weight: 700;
   text-align: center;
-  padding: 1%;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
 }
 
 .filter-button:hover:not(.selected) {
@@ -21,8 +21,43 @@
 
 .selected {
   background-color: var(--select-color);
+  border-color: var(--select-hover-color);
+  color: white;
 }
 
 .selected:hover {
   background-color: var(--select-hover-color);
+}
+
+.filter-check {
+  font-size: 1.1em;
+  font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 20;
+}
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  border-radius: 10em;
+  padding: 0 0.35em;
+  background-color: var(--select-color);
+  color: white;
+  font-size: 0.7em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.reset-button {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--select-color);
+  margin-left: auto;
+}
+
+.reset-button:hover {
+  color: var(--select-hover-color);
 }

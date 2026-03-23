@@ -22,6 +22,14 @@ function Searchbar({ updateSearchQuery, clearTrigger }: searchbarProps) {
     }
   }, [value, updateSearchQuery]);
 
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    if (newValue === '') {
+      updateSearchQuery('');
+    }
+  }, [updateSearchQuery]);
+
 
   return (
     <>
@@ -31,7 +39,7 @@ function Searchbar({ updateSearchQuery, clearTrigger }: searchbarProps) {
         className="searchbar"
         placeholder='Type something...'
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
       {value && <kbd>Enter</kbd>}

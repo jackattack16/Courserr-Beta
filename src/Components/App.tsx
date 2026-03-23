@@ -1,7 +1,7 @@
 // import reactLogo from '../assets/react.svg'
 // import viteLogo from '/vite.svg'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { lazy, Suspense, useState, useMemo } from 'react';
+import { lazy, Suspense, useState, useMemo, useEffect } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -10,6 +10,8 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import courseMap from '../assets/ClassInstantiation';
 import { calculateScore, isCloseMatch } from '../assets/classUtilities';
+import type { FilterState } from '../assets/filterTypes';
+import { emptyFilters } from '../assets/filterTypes';
 
 const CardArea = lazy(() => import('./CardArea'))
 const ClassInfoArea = lazy(() => import('./ClassInfoArea'))
@@ -22,6 +24,17 @@ function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
   const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<Number>);
+  const [activeFilters, setActiveFilters] = useState<FilterState>(() => {
+    try {
+      const saved = localStorage.getItem('activeFilters');
+      if (saved) return JSON.parse(saved) as FilterState;
+    } catch { /* empty */ }
+    return emptyFilters;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+  }, [activeFilters]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -88,10 +101,10 @@ function AppContent() {
   return (
     <div className='flex-container'>
       <Sidebar onHomeClick={handleHomeClick} />
-      <Header updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger}/>
+      <Header updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger} activeFilters={activeFilters} setActiveFilters={setActiveFilters}/>
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
+          <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} activeFilters={activeFilters} />} />
           <Route path="/class/:id" element={<ClassInfoArea bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
         </Routes>
       </Suspense>
