@@ -212,7 +212,7 @@ section.more-like-this-container {
   }
 
   .class-info-title {
-    width: 90%;
+    width: 80%;
     min-width: auto;
     padding: 1rem;
     height: auto;
@@ -240,7 +240,7 @@ section.more-like-this-container {
   .class-info-half-content {
     flex: 100%;
     margin: 0.5rem 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 

@@ -91,6 +91,11 @@ header > h1 > div:hover {
     gap: 1rem;
     justify-content: center;
     gap: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  header.header-hidden {
+    transform: translateY(-100%);
   }
 
   header > h1 {

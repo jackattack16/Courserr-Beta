@@ -48,7 +48,7 @@ kbd {
     width: 100%;
     max-width: calc(100% - 60px);
     padding: 0.5rem 1rem;
-    min-height: var(--touch-target-min);
+    /* min-height: var(--touch-target-min); */
   }
 
   .searchbar {

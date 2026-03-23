@@ -4,6 +4,7 @@ import FilterDialouge from "./Dialouge";
 import Searchbar from "./Searchbar";
 // import TextIconButton from "./TextIconButton";
 import useWindowDimensions from '../assets/windowSizeHook';
+import useScrollDirection from '../assets/useScrollDirection';
 
 type headerProps = {
   updateSearchQuery: (query: string) => void;
@@ -11,11 +12,13 @@ type headerProps = {
 }
 function Header( {updateSearchQuery, clearTrigger}: headerProps) {
   const { width } = useWindowDimensions();
+  const { scrollDirection, isScrolled } = useScrollDirection();
   const isMobile = width <= 768;
+  const hideHeader = isMobile && isScrolled && scrollDirection === 'down';
 
   return (
     <>
-      <header className="grainy-bg-blur">
+      <header className={`grainy-bg-blur${hideHeader ? ' header-hidden' : ''}`}>
 
         {isMobile ? (
           <h1 className="mobile-title">Courserr</h1>
