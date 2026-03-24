@@ -48,7 +48,13 @@
   border: none;
   color: inherit;
   display: flex;
-  
+}
+
+.invisible-button:focus {
+  /* color: var(--select-color); */
+  /* text-shadow: 0 0 10px black; */
+  outline: solid black;
+  border-radius: calc(var(--border-radius) / 5);
 }
 
 .class-card > p {

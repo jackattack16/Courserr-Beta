@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.filter-button:focus {
+  outline-color: var(--select-color);
+}
+
 .filter-button:hover:not(.selected) {
   background-color: rgb(238, 238, 238);
 }
