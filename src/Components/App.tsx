@@ -46,6 +46,7 @@ function AppContent() {
     setSearchQuery('');
     setSearchParams({});
     setClearTrigger(prev => prev + 1);
+    setActiveFilters(emptyFilters);
   };
 
   const updateSearchQuery = (query: string) => {
