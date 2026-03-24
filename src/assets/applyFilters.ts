@@ -1,11 +1,29 @@
 import type Class from './Class';
 import type { FilterState } from './filterTypes';
+import { getSubjectClass } from './classUtilities';
+
+const subjectMap: Record<string, string> = {
+  "Agriculture": "agriculture",
+  "Arts": "arts",
+  "Business": "business",
+  "CTE": "cte",
+  "English": "english",
+  "Mathematics": "mathematics",
+  "Music": "music",
+  "Physical Education": "physical",
+  "Science": "science",
+  "Social Studies": "socialstudies",
+  "World Languages": "language",
+  "Information Solutions": "informationsolutions",
+};
 
 export default function applyFilters(course: Class, activeFilters: FilterState): boolean {
   const { Subject, ClassType, Duration, DualCredit, GradeLevel } = activeFilters;
 
-  if (Subject.length > 0 && !Subject.includes(course.getSubject())) {
-    return false;
+  if (Subject.length > 0) {
+    const courseSubject = getSubjectClass(course.getSubject());
+    const normalizedFilters = Subject.map(s => subjectMap[s] || s.toLowerCase());
+    if (!normalizedFilters.includes(courseSubject)) return false;
   }
 
   if (ClassType.length > 0) {

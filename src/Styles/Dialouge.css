@@ -14,58 +14,59 @@
   --gray-3: #e5e7eb;
 }
 
-.DialogOverlay {
-	position: fixed;
-	inset: 0;
-  z-index: 100;
-	animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.DialogContent {
+.PopoverContent {
   z-index: 101;
-	background-color: var(--light-mode-accent-bg);
-	border-radius: 6px;
-	box-shadow: black;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 90vw;
-	max-width: 500px;
-	max-height: 85vh;
-	padding: 25px;
-	animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-	overflow-y: auto;
+  background-color: var(--light-mode-accent-bg);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90vw;
+  max-width: 500px;
+  max-height: 75vh;
+  padding: 20px;
+  overflow-y: auto;
+  animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.DialogContent:focus {
-	outline: none;
+.PopoverContent:focus {
+  outline: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-dialouge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .DialogTitle {
-	margin: 0;
-	color: black;
-	font-size: 1.5em;
-	display: flex;
-	align-items: center;
-	gap: 0.5em;
-}
-
-.DialogTitle h1 {
-	margin: 0;
+  margin: 0;
+  color: black;
+  font-size: 1.5em;
 }
 
 hr {
   color: black;
   border: 1px solid rgb(117, 117, 117);
-	margin-top: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0;
 }
 
 .filter-dialouge-content {
   display: flex;
   width: 100%;
   flex-direction: column;
-	gap: 1.25em;
+  gap: 1.25em;
+  padding: 0.75em 0;
 }
 
 .filter-dialouge-filter-holder {
@@ -75,10 +76,10 @@ hr {
 }
 
 .filter-dialouge-filter-holder h2 {
-	margin: 0 0 0.4em 0;
-	font-size: 1em;
-	font-weight: 700;
-	color: #333;
+  margin: 0 0 0.4em 0;
+  font-size: 1em;
+  font-weight: 700;
+  color: #333;
 }
 
 .filter-chip-holder {
@@ -90,74 +91,59 @@ hr {
   box-sizing: border-box;
 }
 
+.filter-dialouge-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75em;
+  padding-top: 0.5em;
+}
+
 .Button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 4px;
-	padding: 0 15px;
-	font-size: 15px;
-	line-height: 1;
-	font-weight: 500;
-	height: 35px;
-	user-select: none;
-	cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  height: 35px;
+  user-select: none;
+  cursor: pointer;
 }
 .Button:focus:not(:focus-visible) {
-	outline: 0;
+  outline: 0;
 }
 .Button:focus-visible {
-	outline: 2px solid var(--select-color);
-	outline-offset: 1px;
+  outline: 2px solid var(--select-color);
+  outline-offset: 1px;
 }
 .Button.green {
-	background-color: var(--green-4);
-	color: var(--green-11);
-	outline-color: var(--green-7);
+  background-color: var(--green-4);
+  color: var(--green-11);
+  outline-color: var(--green-7);
 }
 .Button.green:hover {
-	background-color: var(--green-5);
+  background-color: var(--green-5);
 }
 
 .IconButton {
-	all: unset;
-	font-family: inherit;
-	border-radius: 100%;
-	height: fit-content;
-	width: fit-content;
+  all: unset;
+  font-family: inherit;
+  border-radius: 100%;
+  height: fit-content;
+  width: fit-content;
   padding: 0.2em;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	color: black;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	background-color: var(--gray-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background-color: var(--gray-3);
+  cursor: pointer;
 }
 .IconButton:hover {
-	background-color: grey;
+  background-color: grey;
 }
 .IconButton:focus {
-	box-shadow: 0 0 0 2px var(--select-color);
-}
-
-@keyframes overlayShow {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes contentShow {
-	from {
-		opacity: 0;
-		transform: translate(-50%, -48%) scale(0.96);
-	}
-	to {
-		opacity: 1;
-		transform: translate(-50%, -50%) scale(1);
-	}
+  box-shadow: 0 0 0 2px var(--select-color);
 }

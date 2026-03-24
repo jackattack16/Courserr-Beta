@@ -6,7 +6,7 @@ const subjects: string[] = [
   "English",
   "Mathematics",
   "Music",
-  "Physical Education",
+  "PE",
   "Science",
   "Social Studies",
   "World Languages",
