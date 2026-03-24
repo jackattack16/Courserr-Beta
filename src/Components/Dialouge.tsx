@@ -20,6 +20,12 @@ function FilterDialouge({ isMobile, activeFilters, setActiveFilters }: filterDia
   const toggleFilter = useCallback((category: FilterCategory, value: string) => {
     setActiveFilters(prev => {
       const current = prev[category];
+      if (category === "DualCredit") {
+        const updated = current.includes(value)
+          ? current.filter(v => v !== value)
+          : [value];
+        return { ...prev, [category]: updated};
+      }
       const updated = current.includes(value)
         ? current.filter(v => v !== value)
         : [...current, value];
@@ -45,9 +51,6 @@ function FilterDialouge({ isMobile, activeFilters, setActiveFilters }: filterDia
         <Dialog.Content className="DialogContent">
           <Dialog.Title>
             <h1 className="DialogTitle">Filters</h1>
-            {count > 0 && (
-              <button className="reset-button" onClick={resetFilters}>Reset all</button>
-            )}
             <hr />
           </Dialog.Title>
           <Dialog.Description className="DialogDescription">
@@ -119,10 +122,12 @@ function FilterDialouge({ isMobile, activeFilters, setActiveFilters }: filterDia
               </div>
             </div>
           </Dialog.Description>
-          <div style={{ display: "flex", marginTop: 25, justifyContent: "flex-end" }}>
+          <div style={{ display: "flex", marginTop: 25, justifyContent: "flex-end", gap: "1em" }}>
+          <button className={`Button reset-button ${(count > 0) ? "" : "hidden" }`} onClick={resetFilters}>Reset all</button>
             <Dialog.Close asChild>
               <button className="Button green">Done</button>
             </Dialog.Close>
+              
           </div>
           <Dialog.Close asChild>
             <button className="IconButton" aria-label="Close">
