@@ -10,6 +10,51 @@
   }
 }
 
+/* ===== Exit Animations ===== */
+@keyframes pageZoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes titleSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
 @keyframes titleSlideUp {
   from {
     opacity: 0;
@@ -68,13 +113,43 @@ div.more-like-this {
   animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
 }
 
+/* Apply exit animations */
+.class-info-main.page-exit {
+  animation: pageZoomOut 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.class-info-main.page-exit .class-info-title {
+  animation: titleSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.03s both;
+}
+
+.class-info-main.page-exit .class-info-fourth:first-child {
+  animation: slideOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both;
+}
+
+.class-info-main.page-exit .class-info-fourth:last-child {
+  animation: slideOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.08s both;
+}
+
+.class-info-main.page-exit .class-info-half-content {
+  animation: fadeDown 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+.class-info-main.page-exit div.more-like-this {
+  animation: fadeDown 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
+}
+
 /* Accessibility: respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .class-info-main,
   .class-info-title,
   .class-info-fourth,
   .class-info-half-content,
-  div.more-like-this {
+  div.more-like-this,
+  .class-info-main.page-exit,
+  .class-info-main.page-exit .class-info-title,
+  .class-info-main.page-exit .class-info-fourth,
+  .class-info-main.page-exit .class-info-half-content,
+  .class-info-main.page-exit div.more-like-this {
     animation: none;
   }
 }
@@ -110,6 +185,7 @@ div.more-like-this {
 }
 
 .class-info-title {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,6 +201,12 @@ div.more-like-this {
   height: 50%;
   box-shadow: 8px 8px 0px var(--shadow-color);
   margin: 1rem;
+}
+
+.class-info-title > .invisible-button {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
 }
 
 .class-info-title > h1 {

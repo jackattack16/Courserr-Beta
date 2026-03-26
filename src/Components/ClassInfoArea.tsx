@@ -10,17 +10,55 @@ import {
   calculateScore,
   getDepartment
 } from "../assets/classUtilities";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useCallback, useEffect, useRef } from "react";
 import courseMap from "../assets/ClassInstantiation";
 import Chart from "./Chart";
 import ClassCard from "./ClassCard";
 
 interface classInfoAreaProps {
+  onHomeClick: () => void;
   bookmark: (course: number) => void;
   bookmarkedClasses: number[];
+  registerExitTrigger?: (fn: () => void) => void;
 }
-function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
+function ClassInfoArea({ bookmark, bookmarkedClasses, onHomeClick, registerExitTrigger }: classInfoAreaProps) {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isExiting, setIsExiting] = useState(false);
+  const isAnimatingRef = useRef(false);
+
+  const triggerExit = useCallback(() => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setIsExiting(true);
+    onHomeClick();
+  }, [onHomeClick]);
+
+  useEffect(() => {
+    registerExitTrigger?.(triggerExit);
+  }, [registerExitTrigger, triggerExit]);
+
+  // Browser back button: push extra history entry so first back triggers animation
+  useEffect(() => {
+    window.history.pushState(null, '', '');
+    const onPopState = () => {
+      if (!isAnimatingRef.current) {
+        triggerExit();
+      }
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [triggerExit]);
+
+  useEffect(() => {
+    if (isExiting) {
+      const timer = setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [isExiting, navigate]);
   const course: Class = courseMap.get(Number(id));
 
   const nameOfClass: string = course.getClassName() || "Untitled Class";
@@ -95,10 +133,11 @@ function ClassInfoArea({ bookmark, bookmarkedClasses }: classInfoAreaProps) {
 
 
   return (
-    <main className="class-info-main">
+     <main className={`class-info-main${isExiting ? ' page-exit' : ''}`}>
       <section className={`class-info-header ${subjectClass}`}>
         <div className="class-info-half">
           <div className="class-info-title">
+             <button className="invisible-button" onClick={triggerExit}><Icon name="arrow_back" className="class-card-icon" /></button>
             <h1>{nameOfClass}</h1>
             <hr></hr>
             <div>

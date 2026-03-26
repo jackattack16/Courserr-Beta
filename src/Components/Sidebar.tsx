@@ -6,12 +6,12 @@ import useWindowDimensions from '../assets/windowSizeHook';
 import { useEffect } from 'react';
 
 type SidebarProps = {
-  onHomeClick?: () => void;
+  onNavigateHome?: () => void;
   isMenuOpen: boolean;
   setIsMenuOpen: (isOpen: boolean) => void;
 }
 
-function Sidebar({ onHomeClick, isMenuOpen, setIsMenuOpen }: SidebarProps) {
+function Sidebar({ onNavigateHome, isMenuOpen, setIsMenuOpen }: SidebarProps) {
   const { width } = useWindowDimensions();
   const isMobile = width <= 768;
 
@@ -57,14 +57,27 @@ function Sidebar({ onHomeClick, isMenuOpen, setIsMenuOpen }: SidebarProps) {
       )}
 
     <aside className={`sidebar grainy-bg-blur ${isMenuOpen ? 'mobile-open' : ''}`}>
-      {sidebarElements.map( ({text, icon, link, linkElement}, index) => (
-        linkElement ?
+      {sidebarElements.map( ({text, icon, link, linkElement}, index) => {
+        if (index === 0) {
+          return (
+            <button
+              className='sidebar-link'
+              key={index}
+              onClick={() => {
+                onNavigateHome?.();
+                if (isMobile) closeMenu();
+              }}
+            >
+              <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
+            </button>
+          );
+        }
+        return linkElement ?
           <Link
             to={link}
             className='sidebar-link'
             key={index}
             onClick={() => {
-              if (index === 0 && onHomeClick) onHomeClick();
               if (isMobile) closeMenu();
             }}
           >
@@ -75,8 +88,7 @@ function Sidebar({ onHomeClick, isMenuOpen, setIsMenuOpen }: SidebarProps) {
              onClick={isMobile ? closeMenu : undefined}>
             <SidebarElement text={text} icon={icon} key={index}></SidebarElement>
           </a>
-
-      ))}
+      })}
     </aside>
     </>
   )

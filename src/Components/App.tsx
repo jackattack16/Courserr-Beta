@@ -1,7 +1,7 @@
 // import reactLogo from '../assets/react.svg'
 // import viteLogo from '/vite.svg'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { lazy, Suspense, useState, useMemo, useEffect } from 'react';
+import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -40,15 +40,28 @@ function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
   const [, setSearchParams] = useSearchParams();
+  const exitTriggerRef = useRef<(() => void) | null>(null);
 
   const courses = useMemo(() => Array.from(courseMap.values()), []);
 
-  const handleHomeClick = () => {
+  const handleHomeClick = useCallback(() => {
     setSearchQuery('');
     setSearchParams({});
     setClearTrigger(prev => prev + 1);
     setActiveFilters(emptyFilters);
-  };
+  }, [setSearchParams]);
+
+  const registerExitTrigger = useCallback((fn: () => void) => {
+    exitTriggerRef.current = fn;
+  }, []);
+
+  const onNavigateHome = useCallback(() => {
+    if (location.pathname.startsWith('/class') && exitTriggerRef.current) {
+      exitTriggerRef.current();
+    } else {
+      handleHomeClick();
+    }
+  }, [location.pathname, handleHomeClick]);
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
@@ -102,7 +115,7 @@ function AppContent() {
 
   return (
     <div className='flex-container'>
-      <Sidebar onHomeClick={handleHomeClick} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Sidebar onNavigateHome={onNavigateHome} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <Header 
         updateSearchQuery={updateSearchQuery} 
         clearTrigger={clearTrigger} 
@@ -114,7 +127,7 @@ function AppContent() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} activeFilters={activeFilters} />} />
-          <Route path="/class/:id" element={<ClassInfoArea bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} />} />
+          <Route path="/class/:id" element={<ClassInfoArea bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} onHomeClick={handleHomeClick} registerExitTrigger={registerExitTrigger} />} />
         </Routes>
       </Suspense>
     </div>

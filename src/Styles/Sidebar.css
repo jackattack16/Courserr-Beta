@@ -33,6 +33,13 @@
   text-decoration: none;
 }
 
+button.sidebar-link {
+  all: unset;
+  color: var(--text-primary);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
 /* Mobile hamburger menu button */
 .mobile-menu-button {
   display: none;
