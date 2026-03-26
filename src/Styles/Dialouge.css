@@ -16,7 +16,7 @@
 
 .PopoverContent {
   z-index: 101;
-  background-color: #FFFFFF;
+  background-color: var(--surface-color);
   border: var(--border-width) solid var(--border-color);
   border-radius: 0;
   box-shadow: 8px 8px 0px var(--shadow-color);
@@ -51,16 +51,16 @@
 
 .DialogTitle {
   margin: 0;
-  color: black;
+  color: var(--text-primary);
   font-family: 'Space Grotesk', system-ui, sans-serif;
   font-weight: 700;
   font-size: 2em;
 }
 
 hr {
-  color: black;
+  color: var(--border-color);
   border: none;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--border-color);
   margin-top: 1em;
   margin-bottom: 0;
 }
@@ -83,7 +83,7 @@ hr {
   margin: 0 0 0.5em 0;
   font-size: 1.2em;
   font-weight: 700;
-  color: #000;
+  color: var(--text-primary);
   font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
@@ -108,32 +108,34 @@ hr {
   align-items: center;
   justify-content: center;
   border-radius: 0;
-  border: 2px solid black;
-  box-shadow: 2px 2px 0px black;
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px var(--border-color);
   padding: 0 15px;
   font-size: 15px;
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 600;
   height: 40px;
   cursor: pointer;
-  background: white;
+  background: var(--surface-color);
+  color: var(--text-primary);
   transition: all 0.2s var(--spring-easing);
 }
 .Button:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0px black;
+  box-shadow: 4px 4px 0px var(--border-color);
+  background-color: var(--hover-color);
 }
 .Button:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px black;
+  box-shadow: 0px 0px 0px var(--border-color);
 }
 .Button:focus-visible {
   outline: 2px solid var(--select-color);
   outline-offset: 2px;
 }
 .Button.green {
-  background-color: #4ade80;
-  color: black;
+  background-color: var(--accent-green);
+  color: var(--text-primary);
 }
 
 .IconButton {
@@ -145,21 +147,21 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: black;
-  background-color: white;
-  border: 2px solid black;
-  box-shadow: 2px 2px 0px black;
+  color: var(--text-primary);
+  background-color: var(--surface-color);
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px var(--border-color);
   cursor: pointer;
   transition: all 0.2s var(--spring-easing);
 }
 .IconButton:hover {
-  background-color: #f0f0f0;
+  background-color: var(--hover-color);
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px black;
+  box-shadow: 3px 3px 0px var(--border-color);
 }
 .IconButton:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px black;
+  box-shadow: 0px 0px 0px var(--border-color);
 }
 .IconButton:focus {
   outline: 2px solid var(--select-color);

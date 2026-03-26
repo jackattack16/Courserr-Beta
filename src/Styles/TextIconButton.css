@@ -9,8 +9,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-  background-color: white;
+  background-color: var(--surface-color);
+  color: var(--text-primary);
   border-radius: calc(var(--border-radius) / 2);
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   height: max-content;
 }

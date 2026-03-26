@@ -40,7 +40,7 @@
   text-align: left;
   display: flex;
   align-items: center;
-  color: black;
+  color: var(--text-primary);
   font-weight: 700;
   text-decoration: none;
   margin-left: 0.5rem;
@@ -65,14 +65,14 @@
 }
 
 .invisible-button:focus, .invisible-button:hover {
-  border: 2px solid black;
-  background: white;
+  border: 2px solid var(--border-color);
+  background: var(--surface-color);
 }
 
 .class-card > p {
   text-align: left;
-  color: black;
-  background-color: #FFFFFF;
+  color: var(--text-primary);
+  background-color: var(--surface-color);
   margin: 0;
   padding: 1rem;
   border-top: var(--border-width) solid var(--border-color);

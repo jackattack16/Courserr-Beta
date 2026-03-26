@@ -23,6 +23,7 @@ function Loading() {
 function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<number>);
   const [activeFilters, setActiveFilters] = useState<FilterState>(() => {
     try {
@@ -101,8 +102,15 @@ function AppContent() {
 
   return (
     <div className='flex-container'>
-      <Sidebar onHomeClick={handleHomeClick} />
-      <Header updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger} activeFilters={activeFilters} setActiveFilters={setActiveFilters}/>
+      <Sidebar onHomeClick={handleHomeClick} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Header 
+        updateSearchQuery={updateSearchQuery} 
+        clearTrigger={clearTrigger} 
+        activeFilters={activeFilters} 
+        setActiveFilters={setActiveFilters}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
+      />
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} activeFilters={activeFilters} />} />

@@ -28,7 +28,7 @@ main {
     width: 100%;
     left: 0;
     padding: 1rem;
-    padding-top: 7rem; /* Fixed value since header is now auto-height */
+    padding-top: 10rem; /* Fixed value since header is now auto-height */
     flex-direction: column;
     gap: 1.25rem;
     height: auto;

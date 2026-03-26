@@ -1,84 +1,191 @@
 .agriculture {
-  background: #4ADE80 !important; /* Neon Green */
+  background: #34C96A !important; /* Medium Green */
   color: #000000 !important;
 }
 
 .appliescience, .technology, .engineering, .manufacturing, .cte {
-  background: #60A5FA !important; /* Bright Blue */
+  background: #4A90D9 !important; /* Medium Blue */
   color: #000000 !important;
 }
 
 .arteducation, .arts {
-  background: #FCD34D !important; /* Bright Yellow */
+  background: #F5C030 !important; /* Medium Yellow */
   color: #000000 !important;
 }
 
 .business, .finance, .marketing, .management {
-  background: #FBBF24 !important; /* Bright Amber */
+  background: #E8A820 !important; /* Medium Amber */
   color: #000000 !important;
 }
 
 .career, .technicaleducation {
-  background: #A78BFA !important; /* Purple */
+  background: #8B6FE8 !important; /* Medium Purple */
   color: #000000 !important;
 }
 
 .english {
-  background: #34D399 !important; /* Emerald */
+  background: #22B882 !important; /* Medium Emerald */
   color: #000000 !important;
 }
 
 .health {
-  background: #F87171 !important; /* Red */
+  background: #E85555 !important; /* Medium Red */
   color: #000000 !important;
 }
 
 .human, .services, .humanservices {
-  background: #E879F9 !important; /* Fuchsia */
+  background: #D455E8 !important; /* Medium Fuchsia */
   color: #000000 !important;
 }
 
 .information, .solutions, .informationsolutions {
-  background: #22D3EE !important; /* Cyan */
+  background: #10BCDA !important; /* Medium Cyan */
   color: #000000 !important;
 }
 
 .mathematics, .math {
-  background: #818CF8 !important; /* Indigo */
+  background: #6366D4 !important; /* Medium Indigo */
   color: #000000 !important;
 }
 
 .music {
-  background: #FB923C !important; /* Orange */
+  background: #F07828 !important; /* Medium Orange */
   color: #000000 !important;
 }
 
 .physical, .education, .pe {
-  background: #A3E635 !important; /* Lime */
+  background: #88CC1A !important; /* Medium Lime */
   color: #000000 !important;
 }
 
 .science {
-  background: #4ADE80 !important; /* Green */
+  background: #34C96A !important; /* Medium Green */
   color: #000000 !important;
 }
 
 .social, .studies, .history, .socialstudies {
-  background: #FB7185 !important; /* Rose */
+  background: #F05470 !important; /* Medium Rose */
   color: #000000 !important;
 }
 
-.world, .language, .foreign, .language {
-  background: #2DD4BF !important; /* Teal */
+.world, .language, .foreign {
+  background: #18BCAA !important; /* Medium Teal */
   color: #000000 !important;
 }
 
 .misc {
-  background: #94A3B8 !important; /* Slate */
+  background: #7A8FA3 !important; /* Medium Slate */
   color: #000000 !important;
 }
 
 .exampleclass {
-  background: #F0ABFC !important; /* Hot Pink */
+  background: #E070F0 !important; /* Medium Pink */
   color: #000000 !important;
+}
+
+/* ===== DARK MODE - Adjusted class colors ===== */
+[data-theme="dark"] .agriculture {
+  background: #166534 !important;
+  color: #86efac !important;
+}
+
+[data-theme="dark"] .appliescience, 
+[data-theme="dark"] .technology, 
+[data-theme="dark"] .engineering, 
+[data-theme="dark"] .manufacturing, 
+[data-theme="dark"] .cte {
+  background: #1e3a5f !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .arteducation, 
+[data-theme="dark"] .arts {
+  background: #78350f !important;
+  color: #fde68a !important;
+}
+
+[data-theme="dark"] .business, 
+[data-theme="dark"] .finance, 
+[data-theme="dark"] .marketing, 
+[data-theme="dark"] .management {
+  background: #78350f !important;
+  color: #fcd34d !important;
+}
+
+[data-theme="dark"] .career, 
+[data-theme="dark"] .technicaleducation {
+  background: #4c1d95 !important;
+  color: #c4b5fd !important;
+}
+
+[data-theme="dark"] .english {
+  background: #14532d !important;
+  color: #86efac !important;
+}
+
+[data-theme="dark"] .health {
+  background: #7f1d1d !important;
+  color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .human, 
+[data-theme="dark"] .services, 
+[data-theme="dark"] .humanservices {
+  background: #581c87 !important;
+  color: #e879f9 !important;
+}
+
+[data-theme="dark"] .information, 
+[data-theme="dark"] .solutions, 
+[data-theme="dark"] .informationsolutions {
+  background: #164e63 !important;
+  color: #67e8f9 !important;
+}
+
+[data-theme="dark"] .mathematics, 
+[data-theme="dark"] .math {
+  background: #312e81 !important;
+  color: #a5b4fc !important;
+}
+
+[data-theme="dark"] .music {
+  background: #7c2d12 !important;
+  color: #fdba74 !important;
+}
+
+[data-theme="dark"] .physical, 
+[data-theme="dark"] .education, 
+[data-theme="dark"] .pe {
+  background: #3f6212 !important;
+  color: #bef264 !important;
+}
+
+[data-theme="dark"] .science {
+  background: #166534 !important;
+  color: #86efac !important;
+}
+
+[data-theme="dark"] .social, 
+[data-theme="dark"] .studies, 
+[data-theme="dark"] .history, 
+[data-theme="dark"] .socialstudies {
+  background: #881337 !important;
+  color: #fda4af !important;
+}
+
+[data-theme="dark"] .world, 
+[data-theme="dark"] .language, 
+[data-theme="dark"] .foreign {
+  background: #134e4a !important;
+  color: #5eead4 !important;
+}
+
+[data-theme="dark"] .misc {
+  background: #334155 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .exampleclass {
+  background: #86198f !important;
+  color: #f0abfc !important;
 }

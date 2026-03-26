@@ -6,7 +6,7 @@
   gap: 1%;
   border-radius: 0;
   border: var(--border-width) solid var(--border-color);
-  background-color: white;
+  background-color: var(--surface-color);
   padding: 0.25% 1% 0.25% 0.5%;
   box-shadow: 4px 4px 0px var(--shadow-color);
   transition: all 0.2s var(--spring-easing);
@@ -26,6 +26,7 @@
   font-weight: 600;
   border: none;
   background: none;
+  color: var(--text-primary);
   padding: 0.25% 1%;
   box-sizing: border-box;
 }
@@ -35,11 +36,11 @@
 }
 
 kbd {
-  background-color: #FFFFFF;
+  background-color: var(--surface-color);
   border-radius: 0;
-  border: 2px solid #000000;
-  box-shadow: 2px 2px 0px #000000;
-  color: #000000;
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px var(--border-color);
+  color: var(--text-primary);
   display: inline-block;
   font-size: 0.85em;
   font-weight: bold;
@@ -52,12 +53,11 @@ kbd {
 @media (max-width: 768px) {
   .searchbar-holder {
     width: 100%;
-    max-width: calc(100% - 60px);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .searchbar {
-    min-width: 70%;
+    width: 100%;
     font-size: 1rem;
   }
 

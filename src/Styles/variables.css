@@ -2,22 +2,46 @@
   --sidebar-icon-size: 5vw;
   --sidebar-width: calc(var(--sidebar-icon-size) + 1vw);
   
-  /* Neo-Brutalist Colors */
-  --bg-color: #F4F4F0;
-  --text-color: #000000;
+  /* ===== LIGHT MODE - Neo-Brutalist Colors ===== */
+  /* Background hierarchy */
+  --bg-primary: #d6d6d6;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #DDDDDD;
+  --bg-accent: #E8E8E8;
+  
+  /* Text hierarchy */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --text-on-accent: #FFFFFF;
+  
+  /* Surfaces and borders */
+  --surface-color: #FFFFFF;
+  --surface-hover: #F0F0F0;
   --border-color: #000000;
+  --border-subtle: rgba(0, 0, 0, 0.2);
+  
+  /* Accent colors */
   --accent-blue: #007AFF;
   --accent-red: #FF3B30;
   --accent-yellow: #FFCC00;
+  --accent-green: #4ade80;
   --hover-color: #E0E0E0;
-  
-  /* Hard lines instead of blur */
-  --blur-bg-color: #FFFFFF;
-  --border-radius: 0px; 
-  --border-width: 3px;
-  --shadow-color: #000000;
   --select-color: var(--accent-blue);
   --select-hover-color: #0056b3;
+  
+  /* Shadows */
+  --shadow-color: #000000;
+  --shadow-subtle: rgba(0, 0, 0, 0.3);
+  
+  /* Legacy compatibility */
+  --bg-color: var(--bg-primary);
+  --text-color: var(--text-primary);
+  --blur-bg-color: var(--bg-secondary);
+  
+  /* Layout */
+  --border-radius: 0px; 
+  --border-width: 3px;
   --header-height: 6.5vh;
 
   /* Mobile breakpoint variables */
@@ -27,14 +51,68 @@
   --mobile-sidebar-width: 0px;
   --touch-target-min: 44px;
   
-  --light-mode-accent-bg: #DDDDDD;
-  --light-lifted-bg: #FFFFFF;
-  --light-lifted-bg-hover: #F0F0F0;
+  /* Legacy compatibility */
+  --light-mode-accent-bg: var(--bg-tertiary);
+  --light-lifted-bg: var(--surface-color);
+  --light-lifted-bg-hover: var(--surface-hover);
   
-  /* Snappy spring easing for tactile brutalist feel */
+  /* Animation */
   --spring-easing: cubic-bezier(0.3, 1.5, 0.4, 1);
+  --theme-transition: 0.25s ease;
   
   /* Chart-specific variables */
-  --chart-bg: #FFFFFF;
+  --chart-bg: var(--surface-color);
   --grid-color: rgba(0, 0, 0, 0.15);
+  --chart-text: var(--text-primary);
+  --chart-axis: var(--text-secondary);
+}
+
+/* ===== DARK MODE - Neo-Brutalist Colors ===== */
+[data-theme="dark"] {
+  /* Background hierarchy - inverted brutalist */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3d3d3d;
+  --bg-accent: #404040;
+  
+  /* Text hierarchy */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-tertiary: #B0B0B0;
+  --text-on-accent: #000000;
+  
+  /* Surfaces and borders */
+  --surface-color: #2d2d2d;
+  --surface-hover: #3d3d3d;
+  --border-color: #FFFFFF;
+  --border-subtle: rgba(255, 255, 255, 0.2);
+  
+  /* Accent colors - adjusted for dark mode */
+  --accent-blue: #4a9eff;
+  --accent-red: #ff5b55;
+  --accent-yellow: #ffd633;
+  --accent-green: #6df5a0;
+  --hover-color: #3d3d3d;
+  --select-color: var(--accent-blue);
+  --select-hover-color: #7bb8ff;
+  
+  /* Shadows - lighter for visibility on dark */
+  --shadow-color: rgba(255, 255, 255, 0.4);
+  --shadow-subtle: rgba(255, 255, 255, 0.2);
+  
+  /* Legacy compatibility */
+  --bg-color: var(--bg-primary);
+  --text-color: var(--text-primary);
+  --blur-bg-color: var(--bg-secondary);
+  
+  /* Legacy compatibility */
+  --light-mode-accent-bg: var(--bg-tertiary);
+  --light-lifted-bg: var(--surface-color);
+  --light-lifted-bg-hover: var(--surface-hover);
+  
+  /* Chart-specific variables */
+  --chart-bg: var(--surface-color);
+  --grid-color: rgba(255, 255, 255, 0.15);
+  --chart-text: var(--text-primary);
+  --chart-axis: var(--text-secondary);
 }

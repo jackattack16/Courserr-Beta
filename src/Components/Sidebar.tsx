@@ -3,26 +3,25 @@ import '../Styles/Sidebar.css'
 import sidebarElements from '../assets/sidebar'
 import SidebarElement from './SidebarElement'
 import useWindowDimensions from '../assets/windowSizeHook';
-import { useState, useEffect } from 'react';
-import Icon from './Icon';
+import { useEffect } from 'react';
 
 type SidebarProps = {
   onHomeClick?: () => void;
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
 }
 
-function Sidebar({ onHomeClick }: SidebarProps) {
+function Sidebar({ onHomeClick, isMenuOpen, setIsMenuOpen }: SidebarProps) {
   const { width } = useWindowDimensions();
   const isMobile = width <= 768;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Close menu when route changes or on mobile resize
   useEffect(() => {
     if (!isMobile) {
       setIsMenuOpen(false);
     }
-  }, [isMobile]);
+  }, [isMobile, setIsMenuOpen]);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -47,16 +46,7 @@ function Sidebar({ onHomeClick }: SidebarProps) {
         </defs>
       </svg>
 
-      {/* Mobile hamburger menu button */}
-      {isMobile && (
-        <button
-          className='mobile-menu-button grainy-bg-blur'
-          onClick={toggleMenu}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-        >
-          <Icon name={isMenuOpen ? 'close' : 'menu'}   />
-        </button>
-      )}
+      {/* Mobile hamburger menu button moved to Header */}
 
       {/* Overlay for mobile */}
       {isMobile && (

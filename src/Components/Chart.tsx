@@ -160,11 +160,11 @@ function Chart({ course, subjectClass }: chartProps) {
 
   return (
     <div className={`chart-container ${subjectClass}`}>
-      <h3 className="chart-title">Grade vs. Hours per Week</h3>
+      <h3 className="chart-title" style={{ color: 'var(--text-primary)' }}>Grade vs. Hours per Week</h3>
       <div className="chart-legend">
         <div className="chart-legend-item">
           <div className="chart-legend-dot" style={{ backgroundColor: colors.data }}></div>
-          <span>Time Distribution</span>
+          <span style={{ color: 'var(--text-primary)' }}>Time Distribution</span>
         </div>
       </div>
       <div className={`chart-area ${subjectClass}`}>
@@ -180,16 +180,16 @@ function Chart({ course, subjectClass }: chartProps) {
             dataKey="gradeLabel"
             type="category"
             ticks={["F", "D", "C", "B", "A"]}
-            stroke="var(--text-color, #333)"
-            tick={{ fill: 'var(--text-color, #333)', fontSize: 11 }}
+            stroke="var(--text-secondary)"
+            tick={{ fill: 'var(--text-secondary)', fontSize: 11 }}
             interval={0}
           />
           <YAxis 
-            stroke="var(--text-color, #333)"
-            tick={{ fill: 'var(--text-color, #333)', fontSize: 11 }}
+            stroke="var(--text-secondary)"
+            tick={{ fill: 'var(--text-secondary)', fontSize: 11 }}
             domain={yDomain}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255, 255, 255, 0.15)' }} animationDuration={100} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'var(--shadow-subtle)' }} animationDuration={100} />
           
           {/* Transparent spacer from 0 to min */}
           <Bar dataKey="spacer" stackId="a" fill="transparent" barSize={50} />

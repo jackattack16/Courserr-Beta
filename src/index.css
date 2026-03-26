@@ -8,6 +8,13 @@ body {
   color: var(--text-color);
 }
 
+header, aside, main, .class-card, .class-info-title, .class-info-fourth > h2, 
+.class-info-half-content > p, .PopoverContent, .chart-area, .chart-tooltip,
+.list-element, .sidebar-element, .filter-button, .Button, .IconButton,
+.text-icon-button, .searchbar-holder, .mobile-menu-button {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Space Grotesk', system-ui, sans-serif;
   font-weight: 700;
@@ -16,13 +23,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Replaced grainy-bg with stark solid blocks */
 .grainy-bg-blur {
-  background-color: #FFFFFF;
+  background-color: var(--surface-color);
   border-bottom: var(--border-width) solid var(--border-color);
 }
 
 .grainy-bg-blur-dark {
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 button {

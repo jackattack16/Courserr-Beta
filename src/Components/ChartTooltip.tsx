@@ -33,7 +33,7 @@ function CustomTooltip({ payload, active }: CustomTooltipProps) {
 
   return (
     <div className="chart-tooltip grainy-bg-blur">
-      <div className="tooltip-row" style={{ fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '4px', marginBottom: '4px' }}>
+      <div className="tooltip-row" style={{ fontWeight: 600, borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px', marginBottom: '4px' }}>
         <span className="tooltip-label">Grade:</span>
         <span className="tooltip-value" style={{ fontSize: '1rem' }}>{data.gradeLabel}</span>
       </div>
