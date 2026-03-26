@@ -2,13 +2,13 @@
 .sidebar-element {
   height: fit-content;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
-  border-radius: var(--border-radius);
-  padding-left: 2%;
+  border-radius: 0;
+  padding: 0;
   transition: background-color 0.1s ease;
 }
 
@@ -24,8 +24,14 @@
 .sidebar-element-icon {
   font-size: var(--sidebar-icon-size);
   font-weight: 100;
-  margin-right: 5%;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.05s ease;
+  margin: 0;
 }
 
 .sidebar-element > p {

@@ -1,25 +1,25 @@
-
 main {
   box-sizing: border-box;
-  height: 85%;
+  height: 100vh;
   width: calc(100% - var(--sidebar-width));
   position: relative;
   left: var(--sidebar-width);
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  padding: 1%;
-  padding-top: calc(var(--header-height) + 1%);
+  gap: 1.5rem;
+  padding: 1.5rem;
+  padding-top: calc(var(--header-height) + 1.5rem);
   flex: 1;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .class-column {
-  height: 100%;
+  height: max-content;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /* Mobile styles */
@@ -28,17 +28,17 @@ main {
     width: 100%;
     left: 0;
     padding: 1rem;
-    padding-top: calc(var(--mobile-header-height) + 1rem);
-    overflow-x: hidden;
+    padding-top: 7rem; /* Fixed value since header is now auto-height */
     flex-direction: column;
-    overflow-y: auto;
+    gap: 1.25rem;
     height: auto;
     min-height: 100vh;
+    overflow-y: visible;
   }
 
   .class-column {
     width: 100%;
     flex: none;
+    gap: 1.25rem;
   }
-}
- 
+} 

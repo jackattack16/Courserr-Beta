@@ -1,21 +1,29 @@
-
 .searchbar-holder {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   gap: 1%;
-  border-radius: calc(var(--border-radius) / 2);
-  border: 3px solid black;
+  border-radius: 0;
+  border: var(--border-width) solid var(--border-color);
   background-color: white;
   padding: 0.25% 1% 0.25% 0.5%;
+  box-shadow: 4px 4px 0px var(--shadow-color);
+  transition: all 0.2s var(--spring-easing);
+}
+
+.searchbar-holder:focus-within {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--shadow-color);
 }
 
 .searchbar {
   width: max-content;
   min-width: 50%;
-  height:  fit-content;
+  height: fit-content;
   font-size: 1.25em;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 600;
   border: none;
   background: none;
   padding: 0.25% 1%;
@@ -27,18 +35,16 @@
 }
 
 kbd {
-  background-color: #eeeeee;
-  border-radius: 3px;
-  border: 1px solid #b4b4b4;
-  box-shadow:
-    0 1px 1px rgb(0 0 0 / 0.2),
-    0 2px 0 0 rgb(255 255 255 / 0.7) inset;
-  color: #333333;
+  background-color: #FFFFFF;
+  border-radius: 0;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  color: #000000;
   display: inline-block;
   font-size: 0.85em;
   font-weight: bold;
   line-height: 1;
-  padding: 2px 4px;
+  padding: 2px 6px;
   white-space: nowrap;
 }
 
@@ -48,7 +54,6 @@ kbd {
     width: 100%;
     max-width: calc(100% - 60px);
     padding: 0.5rem 1rem;
-    /* min-height: var(--touch-target-min); */
   }
 
   .searchbar {
@@ -57,7 +62,7 @@ kbd {
   }
 
   kbd {
-    display: none; /* Hide keyboard shortcut hints on mobile */
+    display: none;
   }
 }
 

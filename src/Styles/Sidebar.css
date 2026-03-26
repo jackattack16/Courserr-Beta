@@ -3,22 +3,28 @@
   display: flex;
   flex-direction: column;
   width: calc(var(--sidebar-icon-size) + 1vw);
-  transition: width 0.3s cubic-bezier(.08,1,.51,1);
-  padding: 0.5% 0.5vw;
-  overflow: hidden;
+  transition: width 0.3s var(--spring-easing);
+  padding: 1.5vh 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   position: absolute;
   box-sizing: border-box;
   left: 0;
   top: 0;
   z-index: 3;
+  border-right: var(--border-width) solid var(--border-color);
+  background-color: #FFFFFF;
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
 
 @media (pointer:fine) {
   .sidebar:hover {
     width: calc(var(--sidebar-width) * 4.25);
-    /* transition: width 0.2s cubic-bezier(.13,1.21,.37,1.14); */
-    transition: width 0.5s var(--spring-easing);
+    transition: width 0.3s var(--spring-easing);
   }
 }
 
@@ -34,16 +40,17 @@
   top: 10px;
   left: 10px;
   z-index: 100;
-  background: var(--blur-bg-color);
-  backdrop-filter: blur(10px);
-  border: none;
-  border-radius: var(--border-radius);
+  background: #FFFFFF;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 0;
   padding: 12px;
   cursor: pointer;
   width: var(--touch-target-min);
   height: var(--touch-target-min);
   align-items: center;
   justify-content: center;
+  box-shadow: 4px 4px 0px var(--shadow-color);
+  transition: all 0.2s var(--spring-easing);
 }
 
 .mobile-menu-button:hover {
@@ -51,7 +58,8 @@
 }
 
 .mobile-menu-button:active {
-  
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--shadow-color);
 }
 
 /* Mobile sidebar overlay */
@@ -63,13 +71,11 @@
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
-    /* max-width: 300px; */
     transform: translateX(-100%);
     transition: transform 0.3s var(--spring-easing);
-    background-color: var(--blur-bg-color);
-    backdrop-filter: blur(20px);
+    background-color: #FFFFFF;
     padding: 1rem;
-    transition-timing-function: ease;
+    border-right: none;
   }
 
   .sidebar.mobile-open {
@@ -88,7 +94,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 2;
   }
 

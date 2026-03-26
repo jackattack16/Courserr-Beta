@@ -29,7 +29,7 @@ export function getSubjectClass(subject?: string): string {
   if (s.includes('information') || s.includes('solution')) return 'informationsolutions';
   if (s.includes('math') || s.includes('mathematics')) return 'mathematics';
   if (s.includes('music')) return 'music';
-  if (s.includes('physical') || s === 'pe' || s.includes('education')) return 'physical';
+  if (s.includes('physical') || s === 'pe' || s.includes('education')) return 'pe';
   if (s.includes('science') || s.includes('chem') || s.includes('bio') || s.includes('physics')) return 'science';
   if (s.includes('social') || s.includes('history') || s.includes('studies')) return 'socialstudies';
   if (s.includes('world') || s.includes('language') || s.includes('foreign')) return 'language';

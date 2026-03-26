@@ -189,7 +189,7 @@ function Chart({ course, subjectClass }: chartProps) {
             tick={{ fill: 'var(--text-color, #333)', fontSize: 11 }}
             domain={yDomain}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'var(--light-lifted-bg)' }} animationDuration={100} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255, 255, 255, 0.15)' }} animationDuration={100} />
           
           {/* Transparent spacer from 0 to min */}
           <Bar dataKey="spacer" stackId="a" fill="transparent" barSize={50} />

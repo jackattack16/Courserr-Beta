@@ -23,7 +23,7 @@ function Loading() {
 function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
-  const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<Number>);
+  const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<number>);
   const [activeFilters, setActiveFilters] = useState<FilterState>(() => {
     try {
       const saved = localStorage.getItem('activeFilters');

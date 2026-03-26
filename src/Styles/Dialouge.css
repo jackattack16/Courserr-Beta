@@ -16,15 +16,16 @@
 
 .PopoverContent {
   z-index: 101;
-  background-color: var(--light-mode-accent-bg);
-  border-radius: 6px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 0;
+  box-shadow: 8px 8px 0px var(--shadow-color);
   width: 90vw;
   max-width: 500px;
   max-height: 75vh;
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
-  animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideIn 0.3s var(--spring-easing);
 }
 
 .PopoverContent:focus {
@@ -34,7 +35,7 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -51,13 +52,16 @@
 .DialogTitle {
   margin: 0;
   color: black;
-  font-size: 1.5em;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 2em;
 }
 
 hr {
   color: black;
-  border: 1px solid rgb(117, 117, 117);
-  margin-top: 0.5em;
+  border: none;
+  border-top: 2px solid black;
+  margin-top: 1em;
   margin-bottom: 0;
 }
 
@@ -65,8 +69,8 @@ hr {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 1.25em;
-  padding: 0.75em 0;
+  gap: 1.5em;
+  padding: 1em 0;
 }
 
 .filter-dialouge-filter-holder {
@@ -76,17 +80,18 @@ hr {
 }
 
 .filter-dialouge-filter-holder h2 {
-  margin: 0 0 0.4em 0;
-  font-size: 1em;
+  margin: 0 0 0.5em 0;
+  font-size: 1.2em;
   font-weight: 700;
-  color: #333;
+  color: #000;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
 .filter-chip-holder {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.4em;
+  gap: 0.5em;
   width: 100%;
   box-sizing: border-box;
 }
@@ -94,56 +99,102 @@ hr {
 .filter-dialouge-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75em;
-  padding-top: 0.5em;
+  gap: 1em;
+  padding-top: 1em;
 }
 
 .Button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 0;
+  border: 2px solid black;
+  box-shadow: 2px 2px 0px black;
   padding: 0 15px;
   font-size: 15px;
-  line-height: 1;
-  font-weight: 500;
-  height: 35px;
-  user-select: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  height: 40px;
   cursor: pointer;
+  background: white;
+  transition: all 0.2s var(--spring-easing);
 }
-.Button:focus:not(:focus-visible) {
-  outline: 0;
+.Button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px black;
+}
+.Button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px black;
 }
 .Button:focus-visible {
   outline: 2px solid var(--select-color);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 .Button.green {
-  background-color: var(--green-4);
-  color: var(--green-11);
-  outline-color: var(--green-7);
-}
-.Button.green:hover {
-  background-color: var(--green-5);
+  background-color: #4ade80;
+  color: black;
 }
 
 .IconButton {
   all: unset;
-  font-family: inherit;
-  border-radius: 100%;
+  border-radius: 0;
   height: fit-content;
   width: fit-content;
-  padding: 0.2em;
+  padding: 0.4em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: black;
-  background-color: var(--gray-3);
+  background-color: white;
+  border: 2px solid black;
+  box-shadow: 2px 2px 0px black;
   cursor: pointer;
+  transition: all 0.2s var(--spring-easing);
 }
 .IconButton:hover {
-  background-color: grey;
+  background-color: #f0f0f0;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px black;
+}
+.IconButton:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px black;
 }
 .IconButton:focus {
-  box-shadow: 0 0 0 2px var(--select-color);
+  outline: 2px solid var(--select-color);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .PopoverContent {
+    width: calc(100vw - 2rem);
+    max-width: none;
+    padding: 1rem;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+  }
+
+  .DialogTitle {
+    font-size: 1.5em;
+  }
+
+  .Button {
+    height: var(--touch-target-min);
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .filter-chip-holder {
+    gap: 0.4em;
+  }
+}
+
+@media (max-width: 480px) {
+  .PopoverContent {
+    padding: 0.75rem;
+  }
+
+  .filter-dialouge-content {
+    gap: 1em;
+  }
 }

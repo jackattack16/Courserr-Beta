@@ -6,13 +6,15 @@
   box-sizing: border-box;
   text-wrap: nowrap;
   border: 2px solid black;
-  border-radius: calc(var(--border-radius) / 2);
+  border-radius: 0;
+  box-shadow: 2px 2px 0px black;
+  transition: all 0.15s var(--spring-easing);
   background-color: white;
   font-size: 1em;
   font-weight: 700;
   text-align: center;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-  cursor: pointer;
+
+  cursor: default;
 }
 
 .filter-button:focus {
@@ -44,7 +46,7 @@
   justify-content: center;
   min-width: 1.4em;
   height: 1.4em;
-  border-radius: 10em;
+  border-radius: 0;
   padding: 0 0.35em;
   background-color: var(--select-color);
   color: white;

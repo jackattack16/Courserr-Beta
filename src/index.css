@@ -1,27 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Google Sans Flex', system-ui, sans-serif;
-  /* font-family: "Comic Relief", system-ui; */
-  /* background-image: url('./assets/_DSC4836.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
-  background-color: rgb(255, 255, 255);
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Replaced grainy-bg with stark solid blocks */
 .grainy-bg-blur {
-  background-color: var(--blur-bg-color);
-  backdrop-filter: blur(10vh);
-  filter: url(#grain);
+  background-color: #FFFFFF;
+  border-bottom: var(--border-width) solid var(--border-color);
 }
 
 .grainy-bg-blur-dark {
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20vh);
-  filter: url(#grain);
+  background-color: #000000;
+  color: #FFFFFF;
 }
-/* 
-p {
-  font-family: 'Google Sans Flex', system-ui, sans-serif;
-} */
+
+button {
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+}
