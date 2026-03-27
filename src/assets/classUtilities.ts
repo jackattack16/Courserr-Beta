@@ -117,7 +117,7 @@ export function calculateScore(course: Class, query: string, fuzzyMatch?: boolea
       score += 8;
       break;
 
-    default:
+    default: {
       if (!fuzzyMatch) break;
       const classNameArray = className.split(" ");
       const queryArray = query.split(" ");
@@ -127,6 +127,8 @@ export function calculateScore(course: Class, query: string, fuzzyMatch?: boolea
           score += 2;
         }
       }
+      break;
+    }
   }
 
   if (className.startsWith(query)) score += 6;

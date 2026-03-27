@@ -11,7 +11,7 @@ import {
   getDepartment
 } from "../assets/classUtilities";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import courseMap from "../assets/ClassInstantiation";
 import Chart from "./Chart";
 import ClassCard from "./ClassCard";
@@ -61,64 +61,91 @@ function ClassInfoArea({ bookmark, bookmarkedClasses, onHomeClick, registerExitT
   }, [isExiting, navigate]);
   const course: Class = courseMap.get(Number(id));
 
-  const nameOfClass: string = course.getClassName() || "Untitled Class";
-  const subjectClass: string = getSubjectClass(course.getSubject());
+  const nameOfClass: string = useMemo(() => course.getClassName() || "Untitled Class", [course]);
+  const subjectClass: string = useMemo(() => getSubjectClass(course.getSubject()), [course]);
   const iconName = subjectToIcon[subjectClass] || "science_off";
   const description: string = course.getDescription();
 
-  const prerequisitesArray: string[] = course
-    .getPrerequisite()
-    .split(/[,;]|\s+or\s+/i);
+  const prerequisitesArray: string[] = useMemo(() => 
+    course.getPrerequisite().split(/[,;]|\s+or\s+/i),
+    [course]
+  );
 
   // Creates an array of JSX elements that map to the prerequsites by catching an error thrown if the class does not exist
-
-  let hasAddedCheckHandbook:boolean = false;
-  const mapedPrereqs = prerequisitesArray.map(
-    (prereqCourse: string, index: number) => {
+  const mapedPrereqs = useMemo(() => {
+    let hasAddedCheckHandbook = false;
+    const results = [];
+    
+    for (let index = 0; index < prerequisitesArray.length; index++) {
+      const prereqCourse = prerequisitesArray[index];
       if (prereqCourse === "None") {
-        return <ListElement key={index} text="None" />;
+        results.push(<ListElement key={index} text="None" />);
+        continue;
       }
+      let courseId;
       try {
-        const courseId = getPrereqCourseId(prereqCourse);
-        return (
-          <Prerequisite key={index} course={prereqCourse} courseId={courseId} />
-        );
+        courseId = getPrereqCourseId(prereqCourse);
       } catch {
         if(!hasAddedCheckHandbook) {
           hasAddedCheckHandbook = true;
-          return <ListElement key={index} text="See handbook for more details" type="warning" />;
-        }  
+          results.push(<ListElement key={index} text="See handbook for more details" type="warning" />);
+        }
+        continue;
       }
-    },
-  );
+      results.push(
+        <Prerequisite key={index} course={prereqCourse} courseId={courseId} />
+      );
+    }
+    
+    return results;
+  }, [prerequisitesArray]);
   const updateBookmark = () => {
     bookmark(course.getCourseId());
   }
 
-  const courses: Class[] = Array.from(courseMap.values());
+  const courses: Class[] = useMemo(() => Array.from(courseMap.values()), []);
 
-  const moreLikeThis = courses.filter((courseForFilter) => courseForFilter.getSubject() === course.getSubject());
-  console.log(nameOfClass.split(" ")[0]);
-  let evenMoreLikeThis = moreLikeThis
-    .map(course => ({course, score: calculateScore(course, nameOfClass.split(" ")[0].toLowerCase(), true)}))
-    .filter(item => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .map(item => item.course);
+  const moreLikeThis = useMemo(() => 
+    courses.filter((courseForFilter) => courseForFilter.getSubject() === course.getSubject()),
+    [courses, course]
+  );
+  
+  // Memoize the first word of the class name for search
+  const firstWord = useMemo(() => nameOfClass.split(" ")[0].toLowerCase(), [nameOfClass]);
+  
+  // Memoize evenMoreLikeThis calculation
+  const evenMoreLikeThis = useMemo(() => {
+    const results = moreLikeThis
+      .map(c => ({course: c, score: calculateScore(c, firstWord, true)}))
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(item => item.course);
 
+    // Fill to at least 4 items if possible
     let i = -1;
-    while (evenMoreLikeThis.length < 4) {
+    while (results.length < 4 && i < moreLikeThis.length - 1) {
       i++;
-      if (!evenMoreLikeThis.includes(moreLikeThis[i])) evenMoreLikeThis.push(moreLikeThis[i]);
-      if (i > moreLikeThis.length) {
-        evenMoreLikeThis.push(courses[i]);
+      if (!results.includes(moreLikeThis[i])) {
+        results.push(moreLikeThis[i]);
+      }
+    }
+    
+    // If still not enough, fill from all courses
+    if (results.length < 4) {
+      let j = 0;
+      while (results.length < 4 && j < courses.length) {
+        if (!results.includes(courses[j])) {
+          results.push(courses[j]);
+        }
+        j++;
       }
     }
 
-  evenMoreLikeThis = evenMoreLikeThis.slice(1, 5);
+    // Skip the first item (current course) and take next 4
+    return results.slice(1, 5);
+  }, [moreLikeThis, firstWord, courses]);
   
-  console.log(evenMoreLikeThis);
-  
-  const quickLookItems = [
+  const quickLookItems = useMemo(() => [
     {
       label: "Homework",
       value: `${course.getAverageTimePerWeek()} hours / week`,
@@ -129,7 +156,7 @@ function ClassInfoArea({ bookmark, bookmarkedClasses, onHomeClick, registerExitT
     { label: "Dual Credit", value: course.getDualCredit() },
     { label: "Class Type", value: course.getHonorsAP() },
     { label: "Reviews", value: course.getTimePerWeekLog().length },
-  ];
+  ], [course]);
 
 
   return (

@@ -22,7 +22,7 @@ const ClassCard = memo(function ClassCard({ course, bookmark, filled, query }: P
   const iconName = subjectToIcon[subjectClass] || 'science_off';
 
   const preloadClassInfo = () => {
-    import('./ClassInfoArea')
+    import('./ClassInfoArea');
   };
 
   const updateBookmark = () => {

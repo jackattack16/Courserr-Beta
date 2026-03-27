@@ -25,7 +25,7 @@ function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses, a
   }, [width]);
 
   const [searchParams] = useSearchParams();
-  const courses: Class[] = Array.from(courseMap.values());
+  const courses: Class[] = useMemo(() => Array.from(courseMap.values()), []);
 
   const urlQuery = searchParams.get('q') || '';
 
