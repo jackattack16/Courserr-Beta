@@ -28,3 +28,14 @@
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0px var(--shadow-color);
 }
+
+.fab-add-review > a {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .fab-add-review {
+    bottom: 2.5em;
+  }
+}
+
