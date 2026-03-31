@@ -1,6 +1,5 @@
 import '../Styles/CardArea.css'
 import ClassCard from './ClassCard';
-import Icon from './Icon';
 import courseMap from '../assets/ClassInstantiation';
 import Class from '../assets/Class';
 import { useMemo } from 'react';
