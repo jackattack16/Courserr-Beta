@@ -20,6 +20,36 @@ function Loading() {
   return <div style={{ marginLeft: 'var(--sidebar-width)', padding: '20px' }}>Loading...</div>
 }
 
+// Simple scroll manager outside component
+const ScrollManager = {
+  saveKey: 'courserr_scroll_pos',
+  
+  save(position: number) {
+    try {
+      sessionStorage.setItem(this.saveKey, String(position));
+    } catch {
+      // Ignore storage errors
+    }
+  },
+  
+  get(): number {
+    try {
+      const val = sessionStorage.getItem(this.saveKey);
+      return val ? parseInt(val, 10) : 0;
+    } catch {
+      return 0;
+    }
+  },
+  
+  clear() {
+    try {
+      sessionStorage.removeItem(this.saveKey);
+    } catch {
+      // Ignore
+    }
+  }
+};
+
 function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
@@ -41,8 +71,63 @@ function AppContent() {
   const navigate = useNavigate();
   const [, setSearchParams] = useSearchParams();
   const exitTriggerRef = useRef<(() => void) | null>(null);
+  const mainRef = useRef<HTMLElement | null>(null);
+  const scrollYRef = useRef(0);
 
   const courses = useMemo(() => Array.from(courseMap.values()), []);
+
+  // Disable browser scroll restoration
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Track scroll position continuously on the <main> element
+  useEffect(() => {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    mainRef.current = main;
+    const handleScroll = () => { scrollYRef.current = main.scrollTop; };
+    main.addEventListener('scroll', handleScroll, { passive: true });
+    return () => main.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  // Save scroll on navigation to class page & scroll to top on class-to-class
+  const prevPathnameRef = useRef(location.pathname);
+
+  useEffect(() => {
+    const prev = prevPathnameRef.current;
+    const curr = location.pathname;
+
+    if (curr.startsWith('/class/') && prev.startsWith('/class/') && curr !== prev) {
+      // Class-to-class: scroll to top
+      const main = mainRef.current;
+      if (main) main.scrollTo({ top: 0, behavior: 'instant' });
+    } else if (curr.startsWith('/class/') && !prev.startsWith('/class/')) {
+      // Leaving main page: save the tracked scroll position
+      ScrollManager.save(scrollYRef.current);
+    }
+
+    prevPathnameRef.current = curr;
+  }, [location.pathname]);
+
+  // Restore scroll when returning to main page
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const saved = ScrollManager.get();
+      if (saved > 0) {
+        requestAnimationFrame(() => {
+          const main = mainRef.current;
+          if (main) {
+            main.scrollTop = saved;
+            ScrollManager.clear();
+          }
+        });
+      }
+    }
+  }, [location.pathname]);
 
   const handleHomeClick = useCallback(() => {
     setSearchQuery('');
@@ -65,11 +150,17 @@ function AppContent() {
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
-    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    const mainElement = document.querySelector('main');
-    if (mainElement) {
-      mainElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    
+    // Don't reset scroll when going back from class page
+    const wasOnClassPage = location.pathname.startsWith('/class/');
+    
+    if (!wasOnClassPage) {
+      const main = mainRef.current;
+      if (main) {
+        main.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
+    
     if (location.pathname !== '/' && query.length > 0) {
       navigate(`/?q=${encodeURIComponent(query)}`);
     }

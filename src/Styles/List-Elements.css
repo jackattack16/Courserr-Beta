@@ -41,7 +41,6 @@
   font-weight: 700;
   color: var(--text-primary);
   text-align: center;
-  padding: 0.75rem;
   font-size: 1.1em;
   position: relative;
   display: flex;
@@ -49,6 +48,7 @@
   justify-content: space-between;
   background-color: var(--accent-yellow);
   margin-bottom: 2px;
+  cursor: default;
 }
 
 .list-element > p {

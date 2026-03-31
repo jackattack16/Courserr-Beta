@@ -217,6 +217,33 @@ header > h1 > div {
   .right-alligned {
     display: none;
   }
+
+  .mobile-filter-wrapper {
+    flex-shrink: 0;
+  }
+
+  .mobile-filter-wrapper .text-icon-button {
+    height: 100%;
+    min-height: var(--touch-target-min);
+    padding: 0.5rem;
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s var(--spring-easing);
+  }
+
+  .mobile-filter-wrapper .text-icon-button:hover {
+    background-color: var(--hover-color);
+  }
+
+  .mobile-filter-wrapper .text-icon-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--shadow-color);
+  }
 }
 @media (max-width: 480px) {
   .mobile-title {

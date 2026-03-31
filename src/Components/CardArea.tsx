@@ -1,5 +1,6 @@
 import '../Styles/CardArea.css'
 import ClassCard from './ClassCard';
+import Icon from './Icon';
 import courseMap from '../assets/ClassInstantiation';
 import Class from '../assets/Class';
 import { useMemo } from 'react';
@@ -8,6 +9,7 @@ import useWindowDimensions from '../assets/windowSizeHook';
 import { calculateScore } from '../assets/classUtilities';
 import type { FilterState } from '../assets/filterTypes';
 import applyFilters from '../assets/applyFilters';
+import AddReview from './addReview';
 
 type CardAreaProps = {
   searchQuery: string;
@@ -67,6 +69,7 @@ function CardArea({ searchQuery: propSearchQuery, bookmark, bookmarkedClasses, a
           </div>
         ))}
       </main>
+      <AddReview/>
     </>
   )
 }

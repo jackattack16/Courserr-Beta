@@ -98,6 +98,9 @@ function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilte
             </div>
             <div className="mobile-search">
               <Searchbar updateSearchQuery={updateSearchQuery} clearTrigger={clearTrigger}></Searchbar>
+              <div className="mobile-filter-wrapper">
+                <FilterDialouge isMobile={true} activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
+              </div>
             </div>
           </div>
         ) : (

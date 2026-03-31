@@ -1,0 +1,30 @@
+
+.fab-add-review {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--accent-green);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--shadow-color);
+  cursor: pointer;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s var(--spring-easing);
+}
+
+.fab-add-review:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--shadow-color);
+}
+
+.fab-add-review:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--shadow-color);
+}

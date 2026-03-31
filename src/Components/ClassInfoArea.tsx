@@ -15,6 +15,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import courseMap from "../assets/ClassInstantiation";
 import Chart from "./Chart";
 import ClassCard from "./ClassCard";
+import AddReview from "./addReview";
 
 interface classInfoAreaProps {
   onHomeClick: () => void;
@@ -160,7 +161,8 @@ function ClassInfoArea({ bookmark, bookmarkedClasses, onHomeClick, registerExitT
 
 
   return (
-     <main className={`class-info-main${isExiting ? ' page-exit' : ''}`}>
+    <>
+      <main className={`class-info-main${isExiting ? ' page-exit' : ''}`}>
       <section className={`class-info-header ${subjectClass}`}>
         <div className="class-info-half">
           <div className="class-info-title">
@@ -202,9 +204,10 @@ function ClassInfoArea({ bookmark, bookmarkedClasses, onHomeClick, registerExitT
               ))}
         </section>
       </div>
-      
     </main>
-    
+
+    <AddReview/>
+    </>
   );
 }
 

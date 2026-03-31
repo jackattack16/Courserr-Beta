@@ -15,3 +15,17 @@
   border: 3px solid var(--border-color);
   height: max-content;
 }
+
+@media (max-width: 768px) {
+  .text-icon-button {
+    padding: 0;
+    border: var(--border-width) solid var(--border-color);
+    font-size: 1.5em;
+  }
+
+  .text-icon-button .filter-badge {
+    top: -4px;
+    right: -4px;
+    font-size: 0.6em;
+  }
+}
