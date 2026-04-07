@@ -429,8 +429,7 @@
   padding: 2rem;
   background: var(--surface-color);
   border: var(--border-width) solid var(--border-color);
-  margin-right: calc(-1 * var(--border-width));
-  margin-bottom: calc(-1 * var(--border-width));
+  border-bottom: calc(var(--border-width) * 2) solid var(--border-color);
   transition: all 0.25s var(--spring-easing);
   animation: featureCardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   position: relative;
