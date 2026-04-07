@@ -17,10 +17,11 @@ type headerProps = {
   setActiveFilters: Dispatch<SetStateAction<FilterState>>;
   isMenuOpen: boolean;
   toggleMenu: () => void;
+  onNavigateHome: () => void;
 }
 
 
-function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilters, isMenuOpen, toggleMenu}: headerProps) {
+function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilters, isMenuOpen, toggleMenu, onNavigateHome}: headerProps) {
   const { width } = useWindowDimensions();
   const { scrollDirection, isScrolled } = useScrollDirection();
   const isMobile = width <= 768;
@@ -82,7 +83,7 @@ function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilte
               >
                 <Icon name={isMenuOpen ? 'close' : 'menu'} />
               </button>
-              <h1 className="mobile-title">Courserr</h1>
+              <h1 className="mobile-title" onClick={onNavigateHome} style={{ cursor: 'pointer' }}>Courserr</h1>
               <button 
                 onClick={toggleMode} 
                 ref={modeToggleRef} 
@@ -105,7 +106,7 @@ function Header( {updateSearchQuery, clearTrigger, activeFilters, setActiveFilte
           </div>
         ) : (
           <>
-            <h1>
+            <h1 onClick={onNavigateHome}>
               <div>C</div><div>o</div><div>u</div><div>r</div><div>s</div><div>e</div><div className="italic-r">r</div><div className="italicr-r">r</div>
             </h1>
 

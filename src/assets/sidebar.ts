@@ -26,7 +26,7 @@ const sidebarElements: { text: string, icon: string, link: string, linkElement: 
   {
     text: "Help",
     icon: "help",
-    link: "",
+    link: "/help",
     linkElement: true
   },
   {

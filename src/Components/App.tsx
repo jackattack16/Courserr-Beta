@@ -1,6 +1,6 @@
 // import reactLogo from '../assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
@@ -15,6 +15,7 @@ import { emptyFilters } from '../assets/filterTypes';
 
 const CardArea = lazy(() => import('./CardArea'))
 const ClassInfoArea = lazy(() => import('./ClassInfoArea'))
+const Homepage = lazy(() => import('./Homepage'))
 
 function Loading() {
   return <div style={{ marginLeft: 'var(--sidebar-width)', padding: '20px' }}>Loading...</div>
@@ -134,7 +135,10 @@ function AppContent() {
     setSearchParams({});
     setClearTrigger(prev => prev + 1);
     setActiveFilters(emptyFilters);
-  }, [setSearchParams]);
+    if (location.pathname !== '/') {
+      navigate('/');
+    }
+  }, [setSearchParams, location.pathname, navigate]);
 
   const registerExitTrigger = useCallback((fn: () => void) => {
     exitTriggerRef.current = fn;
@@ -214,11 +218,13 @@ function AppContent() {
         setActiveFilters={setActiveFilters}
         isMenuOpen={isMenuOpen}
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
+        onNavigateHome={onNavigateHome}
       />
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CardArea searchQuery={searchQuery} bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} activeFilters={activeFilters} />} />
           <Route path="/class/:id" element={<ClassInfoArea bookmark={updateBookmarks} bookmarkedClasses={bookmarkedClasses} onHomeClick={handleHomeClick} registerExitTrigger={registerExitTrigger} />} />
+          <Route path="/help" element={<Homepage />} />
         </Routes>
       </Suspense>
     </div>
@@ -227,11 +233,11 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppContent />
       <Analytics />
       <SpeedInsights />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
