@@ -205,8 +205,9 @@ div.more-like-this {
 
 .class-info-title > .invisible-button {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: 0;
+  left: 0;
+  padding: 0.05rem;
 }
 
 .class-info-title > h1 {
