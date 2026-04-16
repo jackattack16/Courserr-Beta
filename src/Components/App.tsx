@@ -55,7 +55,14 @@ function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [clearTrigger, setClearTrigger] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [bookmarkedClasses, setBookmarkedClasses] = useState(Array.from(JSON.stringify(localStorage.getItem('bookmarkedClasses')), Number) || Array<number>);
+  const [bookmarkedClasses, setBookmarkedClasses] = useState<number[]>(() => {
+    try {
+      const saved = localStorage.getItem('bookmarkedClasses');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [activeFilters, setActiveFilters] = useState<FilterState>(() => {
     try {
       const saved = localStorage.getItem('activeFilters');
@@ -187,9 +194,11 @@ function AppContent() {
   }, [searchQuery, courses, location.pathname]);
 
   // Navigate if we have an auto-match
-  if (autoNavigate) {
-    navigate(`/class/${autoNavigate}`, { replace: true });
-  }
+  useEffect(() => {
+    if (autoNavigate) {
+      navigate(`/class/${autoNavigate}`, { replace: true });
+    }
+  }, [autoNavigate, navigate]);
 
   const updateBookmarks = (course: number) => {
     try {
