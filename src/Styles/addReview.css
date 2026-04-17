@@ -30,7 +30,7 @@
 }
 
 .fab-add-review > a {
-  color: black;
+  color: inherit;
 }
 
 @media (max-width: 768px) {

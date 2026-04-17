@@ -82,7 +82,7 @@
   --text-on-accent: #000000;
   
   /* Surfaces and borders */
-  --surface-color: #2d2d2d;
+  --surface-color: #1b1b1b;
   --surface-hover: #3d3d3d;
   --border-color: #FFFFFF;
   --border-subtle: rgba(255, 255, 255, 0.2);
@@ -91,14 +91,14 @@
   --accent-blue: #4a9eff;
   --accent-red: #ff5b50;
   --accent-yellow: #ffd633;
-  --accent-green: #6df5a0;
+  --accent-green: #37a862;
   --hover-color: #3d3d3d;
   --select-color: var(--accent-blue);
   --select-hover-color: #7bb8ff;
   
   /* Shadows - lighter for visibility on dark */
-  --shadow-color: rgba(255, 255, 255, 0.4);
-  --shadow-subtle: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgb(134 134 134 / 40%);
+  --shadow-subtle: rgba(255, 255, 255, 0);
   
   /* Legacy compatibility */
   --bg-color: var(--bg-primary);
